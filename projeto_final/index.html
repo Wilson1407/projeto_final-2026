@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ZecaTech - Assistência técnica de celulares. Peças, serviços, orçamento rápido e pagamento via Pix.">
+    <title>ZecaTech - Assistência Técnica</title>
+    
+    <!-- FAVICON SVG INLINE (não requer arquivo externo) -->
+    <link rel="icon" type="image/svg+xml" href="img/icone.png">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     CABEÇALHO FIXO COM NAVEGAÇÃO
+     Contém: logo, botão de menu (mobile) e links âncora
+     para as seções da página.
+     O botão #menuToggle é controlado pelo script.js para
+     abrir/fechar o menu em telas pequenas.
+═══════════════════════════════════════════════════ -->
+<header class="site-header">
+    <div class="nav container">
+
+        <!-- Logo com link para o topo (Início) -->
+        <a href="#inicio" class="logo">
+            <img src="img/icone.png" alt="" class="logo-icon">
+             <span>ZecaTech</span>
+        </a>
+
+        <!-- Botão hambúrguer (aparece só no mobile via CSS) -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+            ☰
+        </button>
+
+        <!-- Menu de navegação principal -->
+        <nav>
+            <ul id="menu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#orcamento">Orçamento</a></li>
+                <li><a href="#catalogo">Peças e Serviços</a></li>
+                <li><a href="#pix">Pagar com Pix</a></li>
+                <li><a href="#ordem">Ordem de Serviço</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 1: HERO / BOAS-VINDAS
+         Primeira dobra da página: apresenta o negócio e
+         traz um CTA (botão) que leva direto ao orçamento.
+    ═══════════════════════════════════════════════════ -->
+    <section class="hero" id="inicio">
+        <div class="container hero-content">
+
+            <!-- Texto de apresentação -->
+            <div>
+                <p class="tag">ASSISTÊNCIA TÉCNICA DE CELULARES</p>
+                <h1>Seu celular com cuidado de verdade.</h1>
+                <p class="hero-text">
+                    Consulte peças, serviços e monte seu orçamento
+                    de forma rápida e organizada.
+                </p>
+                <a href="#orcamento" class="btn">Montar orçamento</a>
+            </div>
+
+            <!-- Cartão decorativo destacando o diferencial -->
+            <div class="hero-card">
+                <!-- Cartão decorativo destacando o diferencial -->
+<div class="hero-card">
+    <img src="img/icone.png" alt="" class="phone-img">
+    <strong>Orçamento rápido</strong>
+    <span>Escolha marca, modelo e peça.</span>
+</div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 2: ORÇAMENTO
+         Funcionalidade principal. Funciona em duas partes:
+         - Formulário (#budgetForm): seleciona marca → modelo
+           → peça (cascata), quantidade e mão de obra.
+         - Painel lateral (.quote): lista os itens adicionados,
+           mostra o total (#total) e gera a ordem de serviço.
+         Os selects são preenchidos dinamicamente pelo script.js.
+    ═══════════════════════════════════════════════════ -->
+    <section class="section" id="orcamento">
+        <div class="container">
+            <div class="section-title">
+                <p class="tag">ORÇAMENTO</p>
+                <h2>Monte o serviço do aparelho</h2>
+                <p>Selecione fabricante, modelo, peça e quantidade.</p>
+            </div>
+
+            <div class="budget-layout">
+
+                <!-- Formulário de seleção -->
+                <form class="panel" id="budgetForm">
+                    <label for="brand">Marca</label>
+                    <select id="brand" required>
+                        <option value="">Selecione a marca</option>
+                    </select>
+
+                    <label for="model">Modelo</label>
+                    <select id="model" required disabled>
+                        <option value="">Primeiro escolha a marca</option>
+                    </select>
+
+                    <label for="part">Peça / Serviço</label>
+                    <select id="part" required disabled>
+                        <option value="">Primeiro escolha o modelo</option>
+                    </select>
+
+                    <div class="two-cols">
+                        <div>
+                            <label for="quantity">Quantidade</label>
+                            <input id="quantity" type="number" min="1" max="20" value="1">
+                        </div>
+                        <div>
+                            <label for="labor">Mão de obra</label>
+                            <select id="labor">
+                                <!-- value = preço adicional somado ao total -->
+                                <option value="0">Sem mão de obra</option>
+                                <option value="50">R$ 50,00</option>
+                                <option value="80">R$ 80,00</option>
+                                <option value="120">R$ 120,00</option>
+                                <option value="150">R$ 150,00</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn primary" type="submit">Adicionar ao orçamento</button>
+                </form>
+
+                <!-- Painel do orçamento (itens + total) -->
+                <aside class="panel quote">
+                    <div class="quote-head">
+                        <h3>Orçamento</h3>
+                        <button id="clearQuote" class="small-btn" type="button">Limpar</button>
+                    </div>
+
+                    <!-- Itens inseridos dinamicamente pelo script.js -->
+                    <div id="quoteItems" class="quote-items">
+                        <p class="empty">Nenhuma peça adicionada ainda.</p>
+                    </div>
+
+                    <!-- Total geral do orçamento -->
+                    <div class="total">
+                        <span>Total</span>
+                        <strong id="total">R$ 0,00</strong>
+                    </div>
+
+                    <!-- Gera o cartão da ordem de serviço na seção #ordem -->
+                    <button id="generateOrder" class="btn primary full" type="button">
+                        Gerar ordem de serviço
+                    </button>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 3: CATÁLOGO DE PEÇAS E SERVIÇOS
+         Grade (#catalogGrid) preenchida dinamicamente pelo
+         script.js. Possui dois filtros:
+         - #search: busca por texto (marca/modelo/peça)
+         - #categoryFilter: filtra pela categoria
+         IMPORTANTE: cada <option> precisa ter o mesmo "value"
+         usado no campo "category" dos itens do catálogo em JS.
+    ═══════════════════════════════════════════════════ -->
+    <section class="section light" id="catalogo">
+        <div class="container">
+            <div class="section-title">
+                <p class="tag">CATÁLOGO</p>
+                <h2>Peças e serviços</h2>
+                <p>Valores fictícios para demonstração do projeto.</p>
+            </div>
+
+            <!-- Filtros de pesquisa e categoria -->
+            <div class="filters">
+                <input id="search" type="search" placeholder="🔎 Pesquisar marca, modelo ou peça...">
+                <select id="categoryFilter">
+                    <option value="">Todas as categorias</option>
+                    <option value="Tela">Tela</option>
+                    <option value="Placa">Placa</option>
+                    <option value="Conector">Conector</option>
+                    <option value="Bateria">Bateria</option>
+                    <option value="Câmera">Câmera</option>
+                    <option value="Áudio">Áudio</option>
+                    <option value="Carcaça">Carcaça</option>
+                    <option value="Flex / Botões">Flex / Botões</option>
+                    <option value="Software">Software</option>
+                    <option value="Serviço">Serviço</option>
+                </select>
+            </div>
+
+            <!-- Cards do catálogo renderizados via JS -->
+            <div id="catalogGrid" class="catalog-grid"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 4: PAGAMENTO VIA PIX
+         Duas partes:
+         - Painel esquerdo: exibe QR Code (#qrcode), valor
+           (#pixValor) e chave Pix (#pixChave). Botão permite
+           baixar o QR como imagem.
+         - Painel direito: formulário para configurar a chave,
+           nome, cidade e valor customizado. O valor pode vir
+           automaticamente do total do orçamento (botão
+           #useQuoteValue).
+         O QR Code é gerado pela biblioteca QRCode.js (CDN).
+    ═══════════════════════════════════════════════════ -->
+    <section class="section" id="pix">
+        <div class="container">
+            <div class="section-title">
+                <p class="tag">PAGAMENTO</p>
+                <h2>Pagar com Pix</h2>
+                <p>Escaneie o QR Code com seu banco ou copie a chave.</p>
+            </div>
+
+            <div class="pix-layout">
+
+                <!-- Painel de exibição do QR Code -->
+                <div class="panel pix-panel">
+                    <div class="pix-header">
+                        <h3>💳 QR Code Pix</h3>
+                        <button id="downloadQR" class="small-btn" type="button" title="Baixar QR Code">
+                            ⬇️ Baixar
+                        </button>
+                    </div>
+
+                    <!-- Div onde o QR Code será desenhado pela lib -->
+                    <div id="qrcode" class="qr-container"></div>
+
+                    <div class="pix-info">
+                        <label>Valor:</label>
+                        <strong id="pixValor">R$ 0,00</strong>
+
+                        <label style="margin-top: 15px;">Chave Pix:</label>
+                        <p id="pixChave" class="pix-key">seu-email@example.com</p>
+                    </div>
+                </div>
+
+                <!-- Painel de configuração do Pix -->
+                <div class="panel pix-config">
+                    <h3>⚙️ Configurar Pix</h3>
+                    <form id="pixForm">
+                        <label for="pixKeyInput">Sua Chave Pix</label>
+                        <input id="pixKeyInput" type="text" autocomplete="email"
+                               placeholder="Email, telefone, CPF ou chave aleatória" required>
+
+                        <label for="pixNameInput">Nome (Completo)</label>
+                        <input id="pixNameInput" type="text" autocomplete="name"
+                               placeholder="Seu nome completo" required>
+
+                        <label for="pixCityInput">Cidade</label>
+                        <input id="pixCityInput" type="text"
+                               placeholder="Ex.: São Paulo" required>
+
+                        <label for="pixCustomValue">Valor Customizado (Opcional)</label>
+                        <input id="pixCustomValue" type="number" step="0.01" inputmode="decimal"
+                               placeholder="Deixe em branco para usar o do orçamento">
+
+                        <button class="btn primary full" type="submit">Gerar QR Code</button>
+                    </form>
+
+                    <!-- Atalho para usar o total do orçamento como valor -->
+                    <div class="pix-options">
+                        <h4>Usar valor do orçamento:</h4>
+                        <button id="useQuoteValue" class="btn secondary" type="button">
+                            Usar Total: <span id="quoteTotal">R$ 0,00</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 5: ORDEM DE SERVIÇO
+         Cadastro do atendimento: dados do cliente, aparelho,
+         status e descrição do problema. Ao salvar, o script.js
+         mostra um feedback (#osFeedback) e pode preencher o
+         cartão resumo (#orderCard) com os dados do atendimento.
+    ═══════════════════════════════════════════════════ -->
+    <section class="section" id="ordem">
+        <div class="container">
+            <div class="section-title">
+                <p class="tag">ORDEM DE SERVIÇO</p>
+                <h2>Registrar atendimento</h2>
+                <p>Preencha os dados do cliente e aparelho.</p>
+            </div>
+
+            <form class="panel os-form" id="osForm">
+
+                <!-- Dados do cliente -->
+                <div class="two-cols">
+                    <div>
+                        <label for="client">Cliente</label>
+                        <input id="client" required autocomplete="name" placeholder="Nome do cliente">
+                    </div>
+                    <div>
+                        <label for="phone">Telefone</label>
+                        <input id="phone" type="tel" required autocomplete="tel"
+                               placeholder="(00) 00000-0000">
+                    </div>
+                </div>
+
+                <!-- Dados do aparelho e situação -->
+                <div class="two-cols">
+                    <div>
+                        <label for="osDevice">Aparelho</label>
+                        <input id="osDevice" required placeholder="Ex.: Samsung Galaxy A55">
+                    </div>
+                    <div>
+                        <label for="osStatus">Status</label>
+                        <select id="osStatus">
+                            <option>Aguardando diagnóstico</option>
+                            <option>Em orçamento</option>
+                            <option>Aguardando peça</option>
+                            <option>Em manutenção</option>
+                            <option>Pronto para retirada</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Descrição do problema -->
+                <label for="problem">Defeito informado</label>
+                <textarea id="problem" rows="4" required
+                          placeholder="Descreva o problema do aparelho"></textarea>
+
+                <button class="btn primary" type="submit">Salvar ordem de serviço</button>
+
+                <!-- Mensagem de confirmação/erro exibida via JS -->
+                <div id="osFeedback" class="feedback"></div>
+            </form>
+
+            <!-- Cartão da OS gerado a partir do orçamento (invisível por padrão) -->
+            <div id="orderCard" class="order-card hidden"></div>
+        </div>
+    </section>
+</main>
+
+<!-- ═══════════════════════════════════════════════════
+     RODAPÉ
+     O ano (#year) é preenchido automaticamente pelo JS.
+═══════════════════════════════════════════════════ -->
+<footer>
+    <p>© <span id="year"></span> ZecaTech — Assistência Técnica</p>
+    <p>Valores fictícios para demonstração.</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════
+     CHATBOX — ATENDIMENTO AUTOMÁTICO
+     Botão flutuante (canto inferior direito) que abre uma
+     janela de chat com respostas automáticas às perguntas
+     mais comuns + atalho para o WhatsApp real.
+     Toda a lógica está no script.js (seção do chatbox).
+═══════════════════════════════════════════════════════ -->
+
+<!-- Botão flutuante do chat -->
+<button id="chatToggle" class="chat-toggle" aria-label="Abrir chat de atendimento">
+    💬
+</button>
+
+<!-- Janela do chat (fechada por padrão) -->
+<div id="chatBox" class="chat-box hidden">
+    <div class="chat-head">
+        <strong>💬 ZecaTech — Atendimento</strong>
+        <button id="chatClose" class="chat-close" aria-label="Fechar chat">×</button>
+    </div>
+
+    <!-- Área das mensagens (preenchida pelo JS) -->
+    <div id="chatMessages" class="chat-messages"></div>
+
+    <!-- Botões de perguntas rápidas -->
+    <div class="chat-quick">
+        <button data-question="horario" type="button">🕐 Horário</button>
+        <button data-question="preco" type="button">💰 Preços</button>
+        <button data-question="local" type="button">📍 Onde ficamos</button>
+        <button data-question="prazo" type="button">⏱️ Prazo</button>
+        <button data-question="garantia" type="button">🛡️ Garantia</button>
+        <button data-question="whatsapp" type="button">📲 WhatsApp</button>
+    </div>
+
+    <!-- Campo de mensagem livre -->
+    <form id="chatForm" class="chat-form">
+        <input id="chatInput" type="text" placeholder="Digite sua pergunta..." autocomplete="off">
+        <button type="submit">➤</button>
+    </form>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SCRIPTS
+     1. QRCode.js — biblioteca externa para gerar o QR Pix
+     2. script.js — toda a lógica da página (deve carregar
+        por último, por isso está no fim do body)
+═══════════════════════════════════════════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

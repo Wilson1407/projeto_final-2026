@@ -1,0 +1,1079 @@
+/* ═══════════════════════════════════════════════════════
+   ZECATECH — FOLHA DE ESTILOS PRINCIPAL
+   Tema: escuro com destaque azul (#18a7ff)
+
+   ÍNDICE:
+   1. Reset e variáveis globais
+   2. Base (html, body, links)
+   3. Utilitários (container, hidden)
+   4. Cabeçalho e navegação
+   5. Hero (boas-vindas)
+   6. Botões
+   7. Seções genéricas
+   8. Orçamento (formulário + painel)
+   9. Carrinho / Orçamento lateral
+   10. Catálogo
+   11. Pagamento Pix
+   12. Ordem de Serviço
+   13. Rodapé
+   14. Responsivo
+═══════════════════════════════════════════════════════ */
+
+
+/* ═══════════ 1. RESET E VARIÁVEIS ══════════════════════ */
+
+/* Zera margens/paddings padrão do navegador e faz o
+   box-sizing considerar padding e borda na largura total */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Paleta centralizada: mude aqui para trocar o tema inteiro */
+:root {
+    --bg:      #07111f;   /* fundo geral da página */
+    --panel:   #0d1b2d;   /* fundo dos painéis/cards */
+    --panel2:  #10243b;   /* fundo secundário (cartão da OS) */
+    --text:    #edf5ff;   /* cor do texto principal */
+    --muted:   #a9b9ca;   /* texto secundário/apagado */
+    --accent:  #18a7ff;   /* azul principal (botões, destaques) */
+    --accent2: #6ee7ff;   /* azul claro (tags, hover) */
+    --line:    #203852;   /* cor das bordas/divisórias */
+    --light:   #f3f7fb;   /* fundo das seções claras */
+}
+
+
+/* ═══════════════════ 2. BASE ═══════════════════════════ */
+
+/* Rolagem suave ao clicar nos links do menu (âncoras) */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Estilo base da página: fonte, fundo escuro e espaçamento entre linhas */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* Links herdam a cor do texto e ficam sem sublinhado */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Título h2 menor no mobile (definido aqui para herdar o tema) */
+h2 {
+    font-size: 2rem;
+}
+
+
+/* ═══════════════════ UTILITÁRIOS ═══════════════════════ */
+
+/* Container central com largura máxima de 1120px */
+.container {
+    width: min(1120px, 92%);
+    margin: auto;
+}
+
+/* Usado para esconder o cartão da OS até ser gerado pelo JS */
+.hidden {
+    display: none;
+}
+
+
+/* ═══════════════════ CABEÇALHO ═════════════════════════ */
+
+/* Cabeçalho fixo no topo ao rolar, com leve transparência
+   e desfoque (efeito de vidro) */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(7, 17, 31, 0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+}
+
+/* Barra interna: logo à esquerda, menu à direita */
+.nav {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Ícone da logo: alinha com o texto do lado */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-icon {
+    width: 32px;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* A palavra "Tech" do logo ganha o azul de destaque */
+.logo span {
+    color: var(--accent);
+}
+
+/* Menu horizontal */
+nav ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+nav a {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+nav a:hover {
+    color: var(--accent2);
+}
+
+/* Botão hambúrguer: escondido no desktop,
+   exibido apenas no mobile (ver seção Responsivo) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: 0;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+
+/* ═══════════════════ HERO ══════════════════════════════ */
+
+/* Fundo com gradiente radial azul no canto superior direito
+   + gradiente diagonal base, criando profundidade */
+.hero {
+    padding: 90px 0;
+    background:
+        radial-gradient(circle at 85% 30%, #123d63 0, transparent 35%),
+        linear-gradient(135deg, #07111f, #0b2036);
+}
+
+/* Duas colunas: texto (maior) e cartão decorativo */
+.hero-content {
+    display: grid;
+    grid-template-columns: 1.5fr 0.7fr;
+    gap: 50px;
+    align-items: center;
+}
+
+/* Etiqueta pequena em maiúsculas acima dos títulos */
+.tag {
+    color: var(--accent2);
+    font-weight: 800;
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+/* Título principal com tamanho fluido (nunca estoura a tela) */
+h1 {
+    font-size: clamp(2.3rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
+
+.hero-text {
+    color: var(--muted);
+    max-width: 700px;
+}
+
+.hero-card {
+    padding: 35px;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: rgba(13, 27, 45, 0.8);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Ícone de celular no cartão do hero */
+.phone-img {
+    width: 110px;
+    height: auto;
+    border-radius: 24px;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-card span {
+    color: var(--muted);
+}
+
+
+/* ═══════════════════ BOTÕES ════════════════════════════ */
+
+/* Estilo base de todos os botões e links de ação */
+.btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 13px 22px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #00111f;
+    font-weight: 800;
+    border: 0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Leve destaque ao passar o mouse */
+.btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+/* Variação que ocupa toda a largura do painel */
+.btn.full {
+    width: 100%;
+}
+
+/* Variação secundária (ex.: "Usar Total" no Pix):
+   fundo translúcido azul com borda */
+.btn.secondary {
+    background: rgba(24, 167, 255, 0.15);
+    color: var(--accent2);
+    border: 1px solid var(--accent);
+    width: 100%;
+    font-weight: 700;
+}
+
+.btn.secondary:hover {
+    background: rgba(24, 167, 255, 0.25);
+}
+
+
+/* ═══════════════════ SEÇÕES ════════════════════════════ */
+
+.section {
+    padding: 75px 0;
+}
+
+/* Seções com fundo claro (catálogo) */
+.light {
+    background: var(--light);
+    color: #0c1b2b;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title p {
+    margin: auto;
+}
+
+/* Parágrafo descritivo abaixo do título (exceto a tag) */
+.section-title > p:not(.tag) {
+    color: var(--muted);
+}
+
+
+/* ═══════════════════ ORÇAMENTO ═════════════════════════ */
+
+/* Formulário à esquerda, carrinho à direita */
+.budget-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+/* Painel padrão reutilizado em toda a página */
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 25px;
+}
+
+label {
+    display: block;
+    font-weight: 700;
+    margin: 15px 0 7px;
+}
+
+/* Campos de formulário no estilo dark */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 13px;
+    border-radius: 9px;
+    border: 1px solid #35506d;
+    background: #09182a;
+    color: var(--text);
+    outline: none;
+}
+
+/* Destaque azul quando o campo recebe foco */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--accent);
+}
+
+/* Duas colunas lado a lado (quantidade/mão de obra, cliente/telefone...) */
+.two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+
+/* ═════════════ CARRINHO / PAINEL DO ORÇAMENTO ══════════ */
+
+.quote-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Botão pequeno secundário ("Limpar") */
+.small-btn {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    padding: 7px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.quote-items {
+    min-height: 180px;
+    margin-top: 15px;
+}
+
+/* Mensagem quando o orçamento está vazio */
+.empty {
+    color: var(--muted);
+    text-align: center;
+    padding: 55px 10px;
+}
+
+/* Cada item adicionado ao orçamento (criado via JS) */
+.quote-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.quote-item small {
+    display: block;
+    color: var(--muted);
+}
+
+/* Botão "×" para remover item do orçamento */
+.remove {
+    background: none;
+    border: 0;
+    color: #ff8f8f;
+    cursor: pointer;
+}
+
+/* Linha do total geral */
+.total {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+    margin-top: 15px;
+    font-size: 1.2rem;
+}
+
+
+/* ═══════════════════ CATÁLOGO (ATUALIZADO) ═══════════════ */
+
+.filters {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.light input,
+.light select {
+    background: white;
+    color: #142437;
+    border-color: #cbd7e4;
+}
+
+/* Grid responsivo: desktop → tablet → mobile */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+/* Card de produto — altura automática para expandir no hover */
+.product {
+    background: white;
+    border: 1px solid #dbe4ed;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(20, 45, 70, 0.08);
+    overflow: hidden; /* recorta conteúdo expandido */
+    transition: box-shadow 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.product:hover {
+    box-shadow: 0 15px 40px rgba(24, 167, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Área da ilustração do celular */
+.product .product-img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+    transition: transform 0.2s ease;
+}
+
+.product:hover .product-img {
+    transform: scale(1.08);
+}
+
+.product-img svg {
+    width: 72px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(20, 45, 70, 0.18));
+}
+
+.product .category {
+    font-size: 0.75rem;
+    color: #0879bd;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.product h3 {
+    color: #0b1b2b;
+    margin: 7px 0;
+    font-size: 1rem;
+}
+
+.product p.base-part {
+    color: #5d6e80;
+    font-size: 0.9rem;
+}
+
+/* Preço inicial (peça mais comum) */
+.price {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: #0879bd;
+    margin-top: 12px;
+}
+
+/* ═══════ LISTA DE SERVIÇOS (ESCONDIDA POR PADRÃO) ═══════ */
+
+/* Container que contém todos os serviços do modelo */
+.services-list {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    opacity: 0;
+    margin-top: 0;
+}
+
+/* Ao passar o mouse, expande a lista */
+.product:hover .services-list {
+    max-height: 400px;
+    padding-top: 15px;
+    opacity: 1;
+}
+
+/* Divisor fino entre preço e serviços */
+.product:hover::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #dbe4ed, transparent);
+    margin: 8px 0;
+}
+
+/* Cada item de serviço na lista expandida */
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px dashed #e8eef5;
+    font-size: 0.85rem;
+}
+
+.service-item:last-child {
+    border-bottom: none;
+}
+
+.service-name {
+    color: #3a4a5b;
+    font-weight: 500;
+}
+
+.service-price {
+    color: #0879bd;
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+/* ═══════════════════ RESPONSIVIDADE AVANÇADA ═══════════ */
+
+/* Tablet até 800px */
+@media (max-width: 800px) {
+
+    nav ul {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 70px;
+        background: #07111f;
+        padding: 20px;
+        flex-direction: column;
+    }
+
+    nav ul.open {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero-content,
+    .budget-layout,
+    .pix-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 65px 0;
+    }
+
+    .qr-container {
+        min-height: 250px;
+    }
+
+    /* Grid com 2 colunas no tablet */
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* No tablet/mobile, hover → clicável (touch) */
+    .services-list.expanded {
+        max-height: 400px;
+        padding-top: 15px;
+        opacity: 1;
+    }
+}
+
+/* Mobile pequeno até 520px */
+@media (max-width: 520px) {
+
+    .two-cols,
+    .filters,
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 55px 0;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    .hero-card {
+        padding: 25px;
+    }
+
+    .phone {
+        font-size: 4rem;
+    }
+
+    .pix-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .pix-header h3 {
+        width: 100%;
+    }
+
+    .qr-container {
+        min-height: 200px;
+        padding: 15px;
+    }
+
+    .panel {
+        padding: 18px;
+    }
+
+    .btn {
+        padding: 11px 18px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Mobile muito pequeno (iPhone SE antigo) */
+@media (max-width: 375px) {
+    .container {
+        width: min(100%, 95%);
+    }
+
+    .product {
+        padding: 15px;
+    }
+
+    .service-item {
+        font-size: 0.8rem;
+    }
+}
+
+/* ═══════════════════ PIX / PAGAMENTO ═══════════════════ */
+
+.pix-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+/* Painel do QR Code centralizado */
+.pix-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.pix-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 15px;
+}
+
+.pix-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+/* Área do QR: borda tracejada funciona como placeholder
+   antes de o QR ser gerado pelo JS */
+.qr-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 280px;
+    margin: 25px 0;
+    padding: 20px;
+    background: rgba(24, 167, 255, 0.05);
+    border: 2px dashed var(--accent);
+    border-radius: 15px;
+}
+
+.qr-container canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+.pix-info {
+    width: 100%;
+    text-align: left;
+    padding: 20px;
+    background: rgba(24, 167, 255, 0.08);
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.pix-info label {
+    display: block;
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.pix-info strong {
+    display: block;
+    font-size: 1.4rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+/* Chave Pix copiável: quebra palavras longas (chaves aleatórias) */
+.pix-key {
+    word-break: break-all;
+    padding: 12px;
+    background: #09182a;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--accent2);
+    margin: 0;
+}
+
+.pix-config h3 {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.pix-config form {
+    margin-bottom: 25px;
+}
+
+.pix-config label {
+    margin: 18px 0 7px 0;
+    font-weight: 700;
+}
+
+.pix-options {
+    padding-top: 25px;
+    border-top: 1px solid var(--line);
+    margin-top: 25px;
+}
+
+.pix-options h4 {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    color: var(--muted);
+}
+
+/* Mensagem de sucesso/erro do Pix (exibida via JS) */
+.pix-feedback {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.pix-feedback.success {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
+    border: 1px solid #34d399;
+}
+
+.pix-feedback.error {
+    background: rgba(255, 143, 143, 0.15);
+    color: #ff8f8f;
+    border: 1px solid #ff8f8f;
+}
+
+
+/* ═══════════════ ORDEM DE SERVIÇO ══════════════════════ */
+
+.os-form {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Mensagem de confirmação após salvar a OS */
+.feedback {
+    margin-top: 15px;
+    color: var(--accent2);
+    font-weight: 700;
+}
+
+/* Cartão resumo da OS gerado pelo script (começa oculto) */
+.order-card {
+    max-width: 900px;
+    margin: 25px auto 0;
+    background: var(--panel2);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px;
+}
+
+
+/* ═══════════════════ RODAPÉ ════════════════════════════ */
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #040b14;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+footer p + p {
+    margin-top: 5px;
+}
+
+
+/* ═══════════════════ RESPONSIVO ════════════════════════ */
+
+/* TABLET / TELAS ATÉ 800px: menu vira hambúrguer,
+   grids caem para coluna única */
+@media (max-width: 800px) {
+
+    /* Menu fecha por padrão; abre quando o JS adiciona .open */
+    nav ul {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 70px;
+        background: #07111f;
+        padding: 20px;
+        flex-direction: column;
+    }
+
+    nav ul.open {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero-content,
+    .budget-layout,
+    .pix-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 65px 0;
+    }
+
+    .qr-container {
+        min-height: 250px;
+    }
+
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* CELULAR PEQUENO — coluna única em tudo */
+@media (max-width: 520px) {
+
+    .two-cols,
+    .filters,
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 55px 0;
+    }
+
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    /* Botão de baixar QR desce abaixo do título */
+    .pix-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .pix-header h3 {
+        width: 100%;
+    }
+
+    .qr-container {
+        min-height: 200px;
+        padding: 15px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════
+   CHATBOX
+═══════════════════════════════════════════════════════ */
+
+/* Botão flutuante no canto inferior direito */
+.chat-toggle {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    z-index: 50;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    border: 0;
+    background: var(--accent);
+    color: #00111f;
+    font-size: 1.6rem;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(24, 167, 255, 0.4);
+    transition: 0.2s;
+}
+
+.chat-toggle:hover {
+    transform: scale(1.08);
+}
+
+/* Janela do chat flutuante */
+.chat-box {
+    position: fixed;
+    bottom: 92px;
+    right: 22px;
+    z-index: 50;
+    width: min(340px, calc(100vw - 44px));
+    max-height: 480px;
+    display: flex;
+    flex-direction: column;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* Estado fechado: sobrepõe o display:flex do .chat-box */
+.chat-box.hidden {
+    display: none;
+}
+
+/* Cabeçalho do chat */
+.chat-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: var(--panel2);
+    border-bottom: 1px solid var(--line);
+}
+
+.chat-close {
+    background: none;
+    border: 0;
+    color: var(--muted);
+    font-size: 1.4rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Área das mensagens */
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 200px;
+}
+
+/* Balões: .bot (esquerda, azul) e .user (direita, cinza) */
+.msg {
+    max-width: 85%;
+    padding: 9px 13px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.msg.bot {
+    align-self: flex-start;
+    background: rgba(24, 167, 255, 0.15);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-bottom-left-radius: 4px;
+}
+
+.msg.user {
+    align-self: flex-end;
+    background: var(--accent);
+    color: #00111f;
+    font-weight: 600;
+    border-bottom-right-radius: 4px;
+}
+
+/* Botões de perguntas rápidas */
+.chat-quick {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px 12px;
+    border-top: 1px solid var(--line);
+}
+
+.chat-quick button {
+    background: rgba(24, 167, 255, 0.1);
+    color: var(--accent2);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 5px 11px;
+    font-size: 0.78rem;
+    cursor: pointer;
+}
+
+.chat-quick button:hover {
+    background: rgba(24, 167, 255, 0.25);
+}
+
+/* Formulário de envio */
+.chat-form {
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px;
+    border-top: 1px solid var(--line);
+}
+
+.chat-form input {
+    flex: 1;
+    margin: 0;
+    padding: 9px 12px;
+}
+
+.chat-form button {
+    background: var(--accent);
+    color: #00111f;
+    border: 0;
+    border-radius: 9px;
+    padding: 0 14px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+/* Responsive: chat ocupa mais da tela no mobile */
+@media (max-width: 520px) {
+    .chat-box {
+        right: 12px;
+        left: 12px;
+        width: auto;
+        bottom: 86px;
+    }
+
+    .chat-toggle {
+        bottom: 16px;
+        right: 16px;
+    }
+}

@@ -19,18 +19,18 @@
 // Marcas → modelos (lista enxuta, ~5 por marca).
 // Adicionar/remover aqui atualiza o orçamento E o catálogo.
 const BRANDS = {
-    "Apple":    ["iPhone 11", "iPhone 13", "iPhone 15", "iPhone SE 2022"],
-    "Samsung":  ["Galaxy A15", "Galaxy A55", "Galaxy S23", "Galaxy S24", "Galaxy Z Flip 5"],
-    "Motorola": ["Moto G54", "Moto G84", "Edge 40", "Edge 50"],
-    "Xiaomi":   ["Redmi Note 13", "Redmi Note 13 Pro", "Xiaomi 14"],
-    "POCO":     ["POCO X6", "POCO F5"],
-    "Realme":   ["Realme C55", "Realme 12"],
-    "ASUS":     ["Zenfone 10", "ROG Phone 7"],
-    "Google":   ["Pixel 7a", "Pixel 8"],
-    "OnePlus":  ["OnePlus 12", "Nord 3"],
-    "OPPO":     ["A78", "Reno 8"],
-    "Infinix":  ["Hot 30", "Note 30"],
-    "Huawei":   ["P40", "Mate 40"]
+    "Apple":    ["iPhone 15"],
+    "Samsung":  ["Galaxy S24"],
+    "Motorola": ["Edge 40"],
+    "Xiaomi":   ["Redmi Note 13 Pro"],
+    "POCO":     ["POCO X6"],
+    "Realme":   ["Realme C55"],
+    "ASUS":     ["Zenfone 10"],
+    "Google":   ["Pixel 7a"],
+    "OnePlus":  ["OnePlus 12"],
+    "OPPO":     ["A78"],
+    "Infinix":  ["Hot 30"],
+    "Huawei":   ["P40"]
 };
 
 // Identidade visual de cada marca: [cor do aparelho, cor da
@@ -50,6 +50,24 @@ const BRAND_VISUALS = {
     "Huawei":   ["#cf0a2c", "#ffd7de", "🌹"]
 };
 const DEFAULT_VISUAL = ["#26425c", "#6ee7ff", "📱"];
+
+// Link de imagem para cada marca do catálogo.
+// Substitua pelas fotos reais da sua loja quando tiver!
+const BRAND_IMAGES = {
+    "Apple":    "img/img01.jpeg",
+    "Samsung":  "img/img02.jpeg",
+    "Motorola": "img/img03.jpeg",
+    "Xiaomi":   "img/img04.jpeg",
+    "POCO":     "img/img05.jpeg",
+    "Realme":   "img/img06.jpeg",
+    "ASUS":     "img/img07.jpeg",
+    "Google":   "img/img08.jpeg",
+    "OnePlus":  "img/img09.jpeg",
+    "OPPO":     "img/img10.jpeg",
+    "Infinix":  "img/img11.jpeg",
+    "Huawei":   "img/img12.jpeg"
+};
+const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400";
 
 // Peças/serviços base: [nome, preço base em R$].
 const BASE_PARTS = [
@@ -96,6 +114,8 @@ const PART_CATEGORIES = [
     ["Software",  "Software"]
 ];
 const DEFAULT_CATEGORY = "Serviço"; // Diagnóstico, Limpeza...
+
+
 
 
 // ═══════════ 2. ELEMENTOS DO DOM ════════════════════════
@@ -319,6 +339,7 @@ function renderCatalog() {
         }
         grouped[key].services.push({
             part: item.part,
+            category: item.category,
             price: item.price
         });
     });
@@ -332,11 +353,10 @@ function renderCatalog() {
                 item.services.map(s => s.part).join(" ")
             );
 
-            return (
+                        return (
                 (!search || text.includes(search)) &&
                 (!category ||
-                 item.services.some(s => s.part === category ||
-                         s.part.includes(category)))
+                 item.services.some(s => s.category === category))
             );
         })
         .slice(0, 180);
@@ -384,19 +404,12 @@ function renderCatalog() {
         return `
         <article class="product" tabindex="0">
             ${arrowIcon}
-            <div class="product-img">
-                <svg viewBox="0 0 120 160" role="img"
-                     aria-label="Ilustração ${item.brand}">
-                    <rect x="35" y="5"  width="50" height="110" rx="12"
-                          fill="${body}"/>
-                    <rect x="40" y="14" width="50" height="92" rx="6"
-                          fill="${screen}" opacity="0.9"/>
-                    <circle cx="50" cy="20" r="4" fill="#ffffff" opacity="0.5"/>
-                    <circle cx="63" cy="20" r="4" fill="#ffffff" opacity="0.6"/>
-                    <rect x="52" y="100" width="20" height="3" rx="1.5"
-                          fill="#00000033"/>
-                    <text x="95" y="42" font-size="16">${emoji}</text>
-                </svg>
+                       <div class="product-img">
+                <img src="${BRAND_IMAGES[item.brand] ?? DEFAULT_IMAGE}"
+                     alt="${item.brand} ${item.model}"
+                     loading="lazy"
+                     onerror="this.outerHTML='<span class=img-fallback>${emoji}</span>'">
+            </div>
             </div>
             <div class="category">${item.brand}</div>
             <h3>${item.model}</h3>
@@ -575,6 +588,9 @@ $("downloadQR").addEventListener("click", () => {
     link.download = "qrcode-pix-zecatech.png";
     link.click();
 });
+
+
+
 
 
 // ═══════════ 8. ORDEM DE SERVIÇO ═══════════════════════

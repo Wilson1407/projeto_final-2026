@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport: essencial para responsividade em celulares -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morada dos Pets - Pet Shop Completo</title>
+
+  <!-- FAVICON SVG INLINE (não requer arquivo externo) -->
+    <link rel="icon" type="image/svg+xml" href="img/icone.png">
+
+  <!-- Estilos CSS externo -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Biblioteca externa para gerar QR Code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <!-- ===== BANNER ANIMADO NO TOPO ===== -->
+  <!-- O conteúdo é duplicado dentro do track para a animação ficar infinita -->
+  <div class="banner-wrap">
+    <div class="banner-track">
+      <span>🐾 Frete GRÁTIS acima de R$ 150</span>
+      <span>✂️ Tosa com 20% OFF esta semana</span>
+      <span>🚚 Entrega expressa em até 2h</span>
+      <!-- repetição para o loop contínuo -->
+      <span>🐾 Frete GRÁTIS acima de R$ 150</span>
+      <span>✂️ Tosa com 20% OFF esta semana</span>
+      <span>🚚 Entrega expressa em até 2h</span>
+    </div>
+  </div>
+
+  <!-- ===== CABEÇALHO FIXO: logo + pesquisa + tema ===== -->
+  <header class="topo">
+    <div class="topo-linha">
+      <h1>🐾 Morada dos Pets</h1>
+
+      <!-- Barra de pesquisa: filtra os produtos em tempo real -->
+      <div class="pesquisa-box">
+        <input type="search" id="campo-pesquisa"
+               placeholder="🔎 Buscar produtos... (ex: ração, bolinha)"
+               aria-label="Pesquisar produtos">
+      </div>
+
+      <!-- Botão dia/noite: alterna o atributo data-tema no <html> -->
+      <button id="btn-tema" class="btn-tema" title="Alternar dia/noite">🌙</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== CATEGORIAS (filtro de produtos) ===== -->
+    <section>
+      <h2>🏷️ Categorias</h2>
+      <nav class="categorias">
+        <button class="btn-cat ativo" data-cat="todos">🐾 Todos</button>
+        <button class="btn-cat" data-cat="cachorros">🐶 Cachorros</button>
+        <button class="btn-cat" data-cat="gatos">🐱 Gatos</button>
+        <button class="btn-cat" data-cat="passaros">🦜 Pássaros</button>
+        <button class="btn-cat" data-cat="outros">🐹 Outros</button>
+      </nav>
+    </section>
+
+    <!-- ===== PRODUTOS (filtráveis por categoria e pesquisa) ===== -->
+    <section id="produtos">
+      <h2>🛒 Produtos</h2>
+      <div class="grid" id="lista-produtos">
+
+        <!-- data-cat e data-nome são usados pelo filtro do JS -->
+        <div class="card produto" data-cat="cachorros" data-nome="ração premium cães adultos">
+          <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=500" alt="Saco de Ração Premium">
+          <h3>Ração Premium Cães Adultos 10kg</h3>
+          <p class="descricao">Nutrição completa para cães de médio e grande porte.</p>
+          <p class="preco">R$ 139,90</p>
+        </div>
+
+        <div class="card produto" data-cat="cachorros" data-nome="ração filhotes crocante">
+          <img src="https://images.unsplash.com/photo-1623387641168-d9803ddd3f35?w=500" alt="Pote com Ração Seca">
+          <h3>Ração Filhotes Crocante 3kg</h3>
+          <p class="descricao">Rica em vitaminas para o crescimento saudável.</p>
+          <p class="preco">R$ 59,90</p>
+        </div>
+
+        <div class="card produto" data-cat="gatos" data-nome="areia sanitária gatos">
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500" alt="Areia Sanitária para Gatos">
+          <h3>Areia Sanitária Premium 4kg</h3>
+          <p class="descricao">Granulada, controla odores por mais tempo.</p>
+          <p class="preco">R$ 27,90</p>
+        </div>
+
+        <div class="card produto" data-cat="gatos" data-nome="arranhador gato torre">
+          <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=500" alt="Arranhador para Gatos">
+          <h3>Arranhador Torre com Brinquedo</h3>
+          <p class="descricao">Seu gato longe do sofá e felino feliz!</p>
+          <p class="preco">R$ 89,90</p>
+        </div>
+
+        <div class="card produto" data-cat="passaros" data-nome="alpiste mix passaros">
+          <img src="https://images.unsplash.com/photo-1522858547137-f1dcec554f55?w=500" alt="Mix de Alpiste">
+          <h3>Mix Alpiste & Sementes 1kg</h3>
+          <p class="descricao">Alimentação balanceada para pássaros canoros.</p>
+          <p class="preco">R$ 18,90</p>
+        </div>
+
+        <div class="card produto" data-cat="passaros" data-nome="gaiola passarinho">
+          <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=500" alt="Gaiola Espaçosa">
+          <h3>Gaiola Aconchego Média</h3>
+          <p class="descricao">Espaçosa, com poleiros e comedouro incluídos.</p>
+          <p class="preco">R$ 179,90</p>
+        </div>
+
+        <div class="card produto" data-cat="outros" data-nome="rato hamster comedouro">
+          <img src="https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=500" alt="Ração para Hamsters">
+          <h3>Alimento Hamsters 500g</h3>
+          <p class="descricao">Grãos e cereais selecionados para roedores.</p>
+          <p class="preco">R$ 12,90</p>
+        </div>
+
+        <div class="card produto" data-cat="cachorros" data-nome="brinquedo bolinha mordedor">
+          <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=500" alt="Bolinha de Tênis">
+          <h3>Bolinha Tênis Colorida</h3>
+          <p class="descricao">Ideal para jogos de buscar e gastar energia.</p>
+          <p class="preco">R$ 12,90</p>
+        </div>
+      </div>
+      <p id="sem-resultados" class="oculto">😕 Nenhum produto encontrado. Tente outra busca!</p>
+    </section>
+
+    <!-- ===== SERVIÇOS (ícones + descrição) ===== -->
+    <section>
+      <h2>✨ Nossos Serviços</h2>
+      <div class="grid servicos">
+        <div class="card-servico"><span class="icone">🛁</span><h3>Banho & Tosa</h3><p>Higienização completa e cortes na medida do seu pet.</p></div>
+        <div class="card-servico"><span class="icone">🩺</span><h3>Consulta Veterinária</h3><p>Check-up e vacinas com profissionais experientes.</p></div>
+        <div class="card-servico"><span class="icone">🎓</span><h3>Adestramento</h3><p>Educação positiva para cães de todas as idades.</p></div>
+        <div class="card-servico"><span class="icone">🏡</span><h3>Hotel & Creche</h3><p>Hospedagem segura e divertida enquanto você viaja.</p></div>
+        <div class="card-servico"><span class="icone">💉</span><h3>Vacinação</h3><p>Carteira de vacinas em dia, sem estresse.</p></div>
+        <div class="card-servico"><span class="icone">🚚</span><h3>Delivery</h3><p>Rações e produtos entregues na sua porta.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== RECOMENDAÇÃO COM BANNER ===== -->
+    <section class="destaque">
+      <div class="banner-recomenda">
+        <div>
+          <h2>⭐ Recomendação da Semana</h2>
+          <p><strong>Combo Banho + Tosa Completa</strong> por apenas <span class="preco-antigo">R$ 120</span> <strong class="preco-promo">R$ 89,90!</strong></p>
+          <p>Somos pet lovers de verdade: confiamos neste combo para o nosso próprio bichinho! 💚</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=600" alt="Pet no banho">
+        <img src="img/img01.jpeg" alt="Antes-Depois">
+        <img src="img/img02.jpeg" alt="Antes-Depois">
+      </div>
+    </section>
+
+    <!-- ===== DELIVERY E CUIDADOS ===== -->
+    <section>
+      <h2>🚚 Delivery & Cuidados</h2>
+      <div class="grid servicos">
+        <div class="card-servico"><span class="icone">📦</span><h3>Entrega Rápida</h3><p>Pedidos entregues em até 2h na região central.</p></div>
+        <div class="card-servico"><span class="icone">🗓️</span><h3>Assinatura Mensal</h3><p>Ração do tamanho certo todo mês, sem esforço.</p></div>
+        <div class="card-servico"><span class="icone">✂️</span><h3>Tosa Higiênica</h3><p>Unhas, orelhas e pelos em dia com segurança.</p></div>
+        <div class="card-servico"><span class="icone">💚</span><h3>Primeiros Socorros</h3><p>Equipe treinada para atendimento emergencial.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== AGENDAMENTO ===== -->
+    <section>
+      <h2>📅 Agende um Serviço</h2>
+      <p>Escolha o dia e horário do banho, tosa ou consulta. Confirmamos por WhatsApp!</p>
+      <form id="form-agendamento">
+        <input type="text" id="ag-nome" placeholder="Seu nome" required>
+        <input type="tel" id="ag-telefone" placeholder="Telefone / WhatsApp" required>
+        <select id="ag-servico" required>
+          <option value="">Selecione o serviço...</option>
+          <option>Banho Simples</option>
+          <option>Banho + Tosa</option>
+          <option>Consulta Veterinária</option>
+          <option>Adestramento</option>
+        </select>
+        <div class="form-row">
+          <input type="date" id="ag-data" required>
+          <input type="time" id="ag-hora" required>
+        </div>
+        <button type="submit" class="btn-finalizar">Confirmar Agendamento</button>
+      </form>
+      <!-- Mensagem de confirmação aparece aqui via JS -->
+      <p id="agendamento-ok" class="msg-sucesso oculto"></p>
+    </section>
+
+    <!-- ===== GALERIA DE CLIENTES FELIZES ===== -->
+    <section>
+      <h2>🐶 Galeria de Clientes Felizes <small>(clique nas fotos!)</small></h2>
+      <div class="grid">
+        <div class="card-foto" onclick="mostrarPet('Toby', 'Au au! Eu amo os petiscos deste Pet Shop! 🦴', 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500')">
+          <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500" alt="Toby">
+          <p>Toby (clique)</p>
+        </div>
+        <div class="card-foto" onclick="mostrarPet('Mimi', 'Depois da cama nova, nem quero acordar... 😴', 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500')">
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500" alt="Mimi">
+          <p>Mimi (clique)</p>
+        </div>
+        <div class="card-foto" onclick="mostrarPet('Thor', 'Hoje foi dia de banho e fiquei mega cheiroso! 🚿✨', 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500')">
+          <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500" alt="Thor">
+          <p>Thor (clique)</p>
+        </div>
+        <div class="card-foto" onclick="mostrarPet('Piu', 'O mix de sementes daqui é imbatível! 🦜', 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=500')">
+          <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=500" alt="Piu">
+          <p>Piu (clique)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== AVALIAÇÕES DE CLIENTES ===== -->
+    <section>
+      <h2>💬 O que dizem nossos clientes</h2>
+      <div class="grid">
+        <div class="card-avaliacao">
+          <p class="estrelas">★★★★★</p>
+          <p>"Melhor pet shop da região! O delivery chegou em 40 minutos."</p>
+          <p class="autor">— Mariana S. e o Bob 🐕</p>
+        </div>
+        <div class="card-avaliacao">
+          <p class="estrelas">★★★★☆</p>
+          <p>"A tosa ficou perfeita. Só demorou um pouquinho, mas valeu!"</p>
+          <p class="autor">— Carlos E. e a Luna 🐱</p>
+        </div>
+        <div class="card-avaliacao">
+          <p class="estrelas">★★★★★</p>
+          <p>"Atendimento nota 10, meu coelho foi super bem cuidado."</p>
+          <p class="autor">— Fernanda R. e o Chico 🐰</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CHECKOUT (mantido, com aviso de demonstração) ===== -->
+    <section class="checkout-section">
+      <h2>💳 Finalizar Compra - Opções de Pagamento</h2>
+      <p>Selecione como prefere pagar suas compras:</p>
+
+      <div class="pagamento-opcoes">
+        <button class="btn-pagamento ativo" onclick="selecionarMetodo('pix', this)">Pix (QR Code)</button>
+        <button class="btn-pagamento" onclick="selecionarMetodo('credito', this)">Cartão de Crédito</button>
+        <button class="btn-pagamento" onclick="selecionarMetodo('debito', this)">Cartão de Débito</button>
+      </div>
+
+      <div id="pagamento-pix" class="area-pagamento ativa">
+        <h3>Pagamento via Pix</h3>
+        <p>Aponte a câmera do celular para o QR Code:</p>
+        <div class="qr-container">
+          <div id="qrcode"></div>
+          <p><small class="alerta-meme"></small></p>
+        </div>
+      </div>
+
+      <div id="pagamento-credito" class="area-pagamento">
+        <h3>Cartão de Crédito</h3>
+        <form onsubmit="event.preventDefault(); alert('Compra simulada! Este site é uma demonstração.');">
+          <input type="text" placeholder="Número do Cartão" required>
+          <input type="text" placeholder="Nome Impresso no Cartão" required>
+          <div class="form-row">
+            <input type="text" placeholder="Validade (MM/AA)" required>
+            <input type="text" placeholder="CVV" required>
+          </div>
+          <button type="submit" class="btn-finalizar">Pagar com Crédito</button>
+        </form>
+      </div>
+
+      <div id="pagamento-debito" class="area-pagamento">
+        <h3>Cartão de Débito</h3>
+        <form onsubmit="event.preventDefault(); alert('Compra simulada! Este site é uma demonstração.');">
+          <input type="text" placeholder="Número do Cartão de Débito" required>
+          <input type="text" placeholder="Nome do Titular" required>
+          <button type="submit" class="btn-finalizar">Pagar com Débito</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <section>
+      <h2>📞 Fale Conosco</h2>
+      <div class="contato-links">
+        <a class="btn-contato zap" href="https://wa.me/5511999999999" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <a class="btn-contato mail" href="mailto:contato@moradadospets.com.br">✉️ contato@moradadospets.com.br</a>
+      </div>
+    </section>
+
+    <!-- ===== FAQ / DÚVIDAS (usa <details>, sem JS necessário) ===== -->
+    <section>
+      <h2>❓ Dúvidas Frequentes</h2>
+      <details><summary>Vocês entregam na minha região?</summary><p>Entregamos em toda a cidade em até 2h. Confira o CEP pelo WhatsApp.</p></details>
+      <details><summary>Qual a idade mínima para banho?</summary><p>A partir de 3 meses, após a primeira dose de vacina.</p></details>
+      <details><summary>Posso agendar para o mesmo dia?</summary><p>Sim, sujeito à disponibilidade. Falte pelo WhatsApp para urgências.</p></details>
+    </section>
+  </main>
+
+  <!-- ===== MODAL DOS PETS ===== -->
+  <div id="pet-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharModal()">&times;</span>
+      <img id="modal-img" src="" alt="Foto do pet">
+      <h3 id="modal-nome"></h3>
+      <p id="modal-mensagem"></p>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER: sobre, serviços, categorias, contato ===== -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>🐾 Sobre Nós</h4>
+        <p>Desde 2020 cuidando de cães, gatos, pássaros e pets exóticos com amor, respeito e preço justo.</p>
+      </div>
+      <div>
+        <h4>Serviços</h4>
+        <p>Banho e Tosa<br>Veterinário<br>Adestramento<br>Delivery</p>
+      </div>
+      <div>
+        <h4>Categorias</h4>
+        <p>Cachorros · Gatos<br>Pássaros · Outros</p>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <p>contato@moradadospets.com.br<br>+55 11 91335-7240</p>
+      </div>
+    </div>
+    <p class="copyright">© 2026 Pet Shop AuAu & Miau — Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- ===== CHATBOT FLUTUANTE "TOBIAS" ===== -->
+<!-- Botão redondo no canto da tela que abre o chat -->
+<button id="chat-toggle" onclick="alternarChat()" title="Falar com o Tobias">💬</button>
+
+<!-- Janela do chat (começa escondida) -->
+<div id="chat-janela" class="oculto" role="dialog" aria-label="Chat com atendente virtual">
+  <!-- Cabeçalho do chat -->
+  <div class="chat-header">
+    <span class="chat-avatar">🐕</span>
+    <div>
+      <strong>Tobias</strong>
+      <small>_online agora • geralmente responde na hora</small>
+    </div>
+    <button class="chat-fechar" onclick="alternarChat()">×</button>
+  </div>
+
+  <!-- Área onde as mensagens aparecem -->
+  <div id="chat-mensagens"></div>
+
+  <!-- Botões de resposta rápida (o JS os recicla a cada mensagem) -->
+  <div id="chat-sugestoes"></div>
+
+  <!-- Formulário de envio -->
+  <form id="chat-form" autocomplete="off">
+    <input type="text" id="chat-input" placeholder="Digite sua mensagem..." aria-label="Mensagem">
+    <button type="submit">➤</button>
+  </form>
+</div>
+
+  <!-- Script JS externo -->
+  <script src="script.js"></script>
+</body>
+</html>

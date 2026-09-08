@@ -486,6 +486,21 @@ textarea:focus {
     margin-top: 12px;
 }
 
+/* Foto do card: tamanho parecido com a ilustração antiga */
+.product-img img {
+    width: 110px;
+    height: 140px;
+    object-fit: cover;          /* preenche sem distorcer */
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(20, 45, 70, 0.18);
+}
+
+/* Fallback (emoji) quando a imagem falha */
+.img-fallback {
+    font-size: 4rem;
+    line-height: 1;
+}
+
 /* ═══════ LISTA DE SERVIÇOS (ESCONDIDA POR PADRÃO) ═══════ */
 
 /* Container que contém todos os serviços do modelo */

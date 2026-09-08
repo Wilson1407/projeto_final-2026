@@ -1,0 +1,549 @@
+/* ============================================================
+   PET SHOP Moradia dos Pets — Folha de estilos
+   Paleta: verde/teal. Temas claro e escuro via variáveis CSS.
+   ============================================================ */
+
+/* ---- Variáveis de cor (tema DIA = padrão) ---- */
+:root {
+  --cor-primaria: #0d9488;      /* verde-azulado principal */
+  --cor-primaria-escura: #0f766e;
+  --cor-destaque: #f59e0b;      /* âmbar para preços e estrelas */
+  --cor-fundo: #f0fdf9;         /* fundo da página */
+  --cor-card: #ffffff;          /* fundo dos cards/seções */
+  --cor-texto: #1f2937;
+  --cor-texto-suave: #6b7280;
+  --cor-borda: #e5e7eb;
+  --sombra: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* ---- Variáveis no tema NOITE ---- */
+[data-tema="escuro"] {
+  --cor-fundo: #111827;
+  --cor-card: #1f2937;
+  --cor-texto: #f3f4f6;
+  --cor-texto-suave: #9ca3af;
+  --cor-borda: #374151;
+  --sombra: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Reset básico ---- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  padding: 0 15px 30px;
+}
+
+/* ================= BANNERS ANIMADOS NO TOPO ================= */
+.banner-wrap {
+  overflow: hidden;              /* esconde o que sai da tela */
+  background: var(--cor-primaria);
+  color: #fff;
+  border-radius: 0 0 10px 10px;
+}
+
+/* A trilha se move sozinha: animação contínua da direita p/ esquerda */
+.banner-track {
+  display: flex;
+  gap: 60px;
+  width: max-content;            /* largura conforme o conteúdo */
+  padding: 10px 0;
+  animation: deslizar 18s linear infinite;
+}
+
+/* Desloca metade da trilha (conteúdo duplicado) = loop perfeito */
+@keyframes deslizar {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Pausa a animação quando o mouse está por cima */
+.banner-wrap:hover .banner-track { animation-play-state: paused; }
+
+/* ================= CABEÇALHO ================= */
+.topo {
+  position: sticky;              /* fica fixo ao rolar a página */
+  top: 0;
+  z-index: 100;
+  background: var(--cor-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 12px 15px;
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 25px;
+}
+
+/* Linha flexível: logo | pesquisa | botão de tema */
+.topo-linha {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;               /* quebra linha em telas pequenas */
+}
+
+.topo h1 { font-size: 1.5rem; color: var(--cor-primaria); }
+
+/* ✅ mesmo nome usado no HTML: <div class="pesquisa-box"> */
+.pesquisa-box { flex: 1; min-width: 180px; }
+
+input[type="search"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: var(--cor-card);
+  color: var(--cor-texto);
+}
+
+/* Botão dia/noite */
+.btn-tema {
+  background: var(--cor-primaria);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ================= SEÇÕES ================= */
+section {
+  background: var(--cor-card);
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: var(--sombra);
+}
+
+section h2 {
+  color: var(--cor-primaria);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--cor-borda);
+  padding-bottom: 8px;
+}
+
+section h2 small { font-size: 0.9rem; color: var(--cor-texto-suave); }
+
+/* ================= GRID E CARDS DE PRODUTO ================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;                     /* colunas se ajustam sozinhas = responsivo */
+}
+
+.card, .card-foto {
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-foto { cursor: pointer; }
+
+.card:hover, .card-foto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.card img, .card-foto img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+
+.descricao { font-size: 0.88rem; color: var(--cor-texto-suave); margin-bottom: 10px; }
+
+.preco { font-weight: bold; color: var(--cor-primaria); font-size: 1.25rem; }
+
+.card-foto p { font-size: 0.9rem; font-weight: 600; color: var(--cor-texto-suave); margin-top: 5px; }
+
+/* Card vindo da pesquisa escondido */
+.oculto { display: none !important; }
+
+#sem-resultados { text-align: center; color: var(--cor-texto-suave); margin-top: 15px; }
+
+/* ================= CATEGORIAS (filtros) ================= */
+.categorias { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.btn-cat {
+  padding: 10px 18px;
+  border: 2px solid var(--cor-primaria);
+  background: transparent;
+  color: var(--cor-primaria);
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cat.ativo, .btn-cat:hover { background: var(--cor-primaria); color: #fff; }
+
+/* ================= CARDS DE SERVIÇO ================= */
+.card-servico {
+  text-align: center;
+  padding: 20px 15px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.card-servico:hover { transform: translateY(-4px); }
+
+.icone { font-size: 2.2rem; display: block; margin-bottom: 10px; }
+
+.card-servico h3 { margin-bottom: 6px; color: var(--cor-primaria); }
+
+.card-servico p { font-size: 0.88rem; color: var(--cor-texto-suave); }
+
+/* ================= BANNER DE RECOMENDAÇÃO ================= */
+.destaque { border-left: 6px solid var(--cor-destaque); }
+
+.banner-recomenda {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;               /* imagem desce abaixo do texto no celular */
+}
+
+.banner-recomenda img {
+  width: 220px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.preco-antigo { text-decoration: line-through; color: var(--cor-texto-suave); }
+.preco-promo { color: var(--cor-destaque); font-size: 1.3rem; font-weight: bold; }
+
+/* ================= AVALIAÇÕES ================= */
+.estrelas { color: var(--cor-destaque); font-size: 1.2rem; letter-spacing: 2px; }
+
+.card-avaliacao { border: 1px solid var(--cor-borda); border-radius: 10px; padding: 15px; }
+
+.autor { margin-top: 10px; font-size: 0.85rem; color: var(--cor-texto-suave); font-style: italic; }
+
+/* ================= FORMULÁRIOS ================= */
+.form-row { display: flex; gap: 10px; }
+
+.msg-sucesso {
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(13, 148, 136, 0.12);
+  border-left: 4px solid var(--cor-primaria);
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.btn-finalizar {
+  background: var(--cor-primaria);
+  color: #fff;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 12px;
+  transition: filter 0.2s;
+}
+
+.btn-finalizar:hover { filter: brightness(0.85); }
+
+/* ================= PAGAMENTO ================= */
+.pagamento-opcoes { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
+
+.btn-pagamento {
+  padding: 12px 24px;
+  border: 2px solid var(--cor-primaria);
+  background: transparent;
+  color: var(--cor-primaria);
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-pagamento.ativo, .btn-pagamento:hover { background: var(--cor-primaria); color: #fff; }
+
+.area-pagamento {
+  display: none;
+  padding: 20px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.area-pagamento.ativa { display: block; }
+
+.qr-container { display: flex; flex-direction: column; align-items: center; margin-top: 15px; }
+
+#qrcode { padding: 10px; background: #fff; border: 1px solid var(--cor-borda); border-radius: 8px; }
+
+.alerta-meme { color: var(--cor-texto-suave); margin-top: 8px; }
+
+/* ================= CONTATO ================= */
+.contato-links { display: flex; flex-wrap: wrap; gap: 15px; }
+
+.btn-contato {
+  padding: 14px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #fff;
+  transition: filter 0.2s;
+}
+
+.zap { background: #25d366; }   /* verde do WhatsApp */
+.mail { background: var(--cor-destaque); }
+.btn-contato:hover { filter: brightness(0.9); }
+
+/* ================= FAQ ================= */
+details {
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+}
+
+details summary { cursor: pointer; font-weight: bold; }
+details p { margin-top: 10px; color: var(--cor-texto-suave); }
+
+/* ================= MODAL ================= */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;                      /* top/right/bottom/left: 0 */
+  background: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: var(--cor-card);
+  color: var(--cor-texto);
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.modal-content img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
+.modal-content h3 { color: var(--cor-primaria); margin-bottom: 10px; }
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  color: var(--cor-texto-suave);
+  cursor: pointer;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  background: var(--cor-primaria);
+  color: #fff;
+  border-radius: 12px 12px 0 0;
+  padding: 30px 20px 15px;
+  margin: 40px -15px 0;          /* estica até as bordas da tela */
+}
+
+/* Colunas que empilham no celular automaticamente */
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  max-width: 900px;
+  margin: 0 auto 20px;
+}
+
+.footer-grid h4 { margin-bottom: 8px; }
+.footer-grid p { font-size: 0.9rem; opacity: 0.9; }
+.copyright { text-align: center; font-size: 0.85rem; opacity: 0.8; }
+
+/* ================= RESPONSIVIDADE EXTRA ================= */
+@media (max-width: 600px) {
+  .topo h1 { font-size: 1.2rem; }
+  .form-row { flex-direction: column; gap: 0; }
+  .modal-content img { height: 160px; }
+}
+
+/* ================= CHATBOT "TOBIAS" ================= */
+
+/* Botão flutuante: sempre visível no canto inferior direito */
+#chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: var(--cor-primaria);
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+  transition: transform 0.2s;
+}
+
+#chat-toggle:hover { transform: scale(1.1); }
+
+/* Janela do chat */
+#chat-janela {
+  position: fixed;
+  bottom: 95px;
+  right: 20px;
+  width: 340px;
+  max-width: calc(100vw - 30px);   /* nunca estoura a tela do celular */
+  height: 480px;
+  max-height: calc(100vh - 130px);
+  background: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: popIn 0.25s ease;
+}
+
+/* Cabeçalho com "avatar" do Tobias */
+.chat-header {
+  background: var(--cor-primaria);
+  color: #fff;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.chat-header strong { display: block; font-size: 1rem; }
+.chat-header small { opacity: 0.85; font-size: 0.72rem; }
+.chat-avatar { font-size: 1.8rem; }
+.chat-fechar {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* Área de mensagens: rola sozinha quando enche */
+#chat-mensagens {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Balões de fala: humano à direita, Tobias à esquerda */
+.msg {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: pre-line;         /* respeita quebras de linha (\n) */
+}
+
+.msg-bot {
+  align-self: flex-start;
+  background: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-bottom-left-radius: 2px;
+}
+
+.msg-user {
+  align-self: flex-end;
+  background: var(--cor-primaria);
+  color: #fff;
+  border-bottom-right-radius: 2px;
+}
+
+/* Bolinhas de "digitando..." */
+.msg-digitando {
+  font-style: italic;
+  color: var(--cor-texto-suave);
+  animation: piscar 0.9s infinite;
+}
+
+@keyframes piscar { 50% { opacity: 0.4; } }
+
+/* Botões de resposta rápida */
+#chat-sugestoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 15px;
+}
+
+.btn-sugestao {
+  border: 1.5px solid var(--cor-primaria);
+  background: transparent;
+  color: var(--cor-primaria);
+  border-radius: 15px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-sugestao:hover { background: var(--cor-primaria); color: #fff; }
+
+/* Formulário do chat */
+#chat-form {
+  display: flex;
+  border-top: 1px solid var(--cor-borda);
+}
+
+#chat-form input {
+  border: none;
+  margin: 0;
+  border-radius: 0;
+  flex: 1;
+  padding: 13px;
+}
+
+#chat-form button {
+  background: var(--cor-primaria);
+  color: #fff;
+  border: none;
+  padding: 0 18px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}

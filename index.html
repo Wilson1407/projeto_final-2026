@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agência Central — Serviços</title>
 
+  <!-- Favicon: ícone da agência na aba do navegador -->
+  <link rel="icon" type="image/png" href="img/icone.png">
+
   <style>
     /* ===== ESTILO DA PÁGINA INICIAL ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,6 +27,15 @@
     }
 
     .cabecalho h1 { font-size: 2.2em; margin-bottom: 10px; }
+
+    /* Ícone da agência junto ao título do cabeçalho */
+    .cabecalho h1 img {
+      width: 40px;
+      height: 40px;
+      vertical-align: middle;
+      border-radius: 8px;
+      margin-right: 10px;
+    }
 
     /* Grade de cartões dos serviços: organiza em colunas
        automaticamente e fica responsiva em telas menores */
@@ -45,7 +57,15 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .cartao .icone { font-size: 3em; }
+    /* Ícone dos cartões (imagem) */
+    .cartao .icone {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      font-size: 3em; /* mantém o tamanho caso o cartão use emoji */
+    }
 
     .cartao h2 { margin: 10px 0; }
 
@@ -71,26 +91,16 @@
       background: #2b2b2b;
       color: #fff;
     }
-
-    /* Antes (para emoji/texto) */
-.icone { font-size: 3em; }
-
-/* Depois (para imagem) */
-.icone {
-  width: 60px;     /* tamanho fixo do ícone */
-  height: 60px;
-  object-fit: contain;  /* mantém proporção se as imagens tiverem tamanhos diferentes */
-  display: block;
-  margin:  auto;  /* centraliza o ícone no cartão */
-}
-
   </style>
 </head>
 <body>
 
   <!-- Cabeçalho: apresentação da agência -->
   <header class="cabecalho">
-    <h1>🏢 Agência Central</h1>
+    <h1>
+      <img src="icone.png" alt="Logo Agência Central">
+      Agência Central
+    </h1>
     <p>Escolha um dos nossos serviços abaixo:</p>
   </header>
 
@@ -114,7 +124,7 @@
         <a href="/02-petshop/index.html">Entrar</a>
       </div>
 
-      <!-- Serviço 3: Psicologo (projeto pronto -->
+      <!-- Serviço 3: Psicólogo (projeto pronto) -->
       <div class="cartao">
         <img class="icone" src="/03-psicologo/img/icone.png">
         <h2>Psicologo</h2>
@@ -122,7 +132,7 @@
         <a href="/03-psicologo/index.html">Entrar</a>
       </div>
 
-      <!-- Serviço 4: página futura -->
+      <!-- Serviço 4: Livraria (projeto pronto)-->
       <div class="cartao">
         <img class="icone" src="/04-livraria/img/icone.png">
         <h2>Livraria</h2>
@@ -132,18 +142,18 @@
 
       <!-- Serviço 5: página futura -->
       <div class="cartao">
-        <div class="icone">👥</div>
-        <h2>Quem Somos</h2>
-        <p>Conheça nossa história e equipe.</p>
-        <a href="quem-somos/index.html">Entrar</a>
+        <img class="icone" src="/05-academia/img/">
+        <h2>Academia</h2>
+        <p>...</p>
+        <a href="index.html">Entrar</a>
       </div>
 
       <!-- Serviço 6: página futura -->
       <div class="cartao">
-        <div class="icone">⭐</div>
-        <h2>Avaliações</h2>
-        <p>O que dizem nossos clientes.</p>
-        <a href="avaliacoes/index.html">Entrar</a>
+        <img class="icone" src="/06-fliperama/img/">
+        <h2>Fliperama</h2>
+        <p>...</p>
+        <a href="index.html">Entrar</a>
       </div>
 
     </section>

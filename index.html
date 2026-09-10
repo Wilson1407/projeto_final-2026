@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agência Central — Serviços</title>
+
+  <style>
+    /* ===== ESTILO DA PÁGINA INICIAL ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      color: #333;
+    }
+
+    /* Cabeçalho com título da agência */
+    .cabecalho {
+      background: linear-gradient(135deg, #6d4aff, #4a2fd8);
+      color: #fff;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    .cabecalho h1 { font-size: 2.2em; margin-bottom: 10px; }
+
+    /* Grade de cartões dos serviços: organiza em colunas
+       automaticamente e fica responsiva em telas menores */
+    .grade {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Cada cartão representa um serviço/página */
+    .cartao {
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .cartao .icone { font-size: 3em; }
+
+    .cartao h2 { margin: 10px 0; }
+
+    .cartao p { font-size: 0.95em; color: #666; }
+
+    /* Botão que leva à página do serviço */
+    .cartao a {
+      display: inline-block;
+      background: #6d4aff;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 24px;
+      margin-top: 15px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .cartao a:hover { background: #4a2fd8; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #2b2b2b;
+      color: #fff;
+    }
+
+    /* Antes (para emoji/texto) */
+.icone { font-size: 3em; }
+
+/* Depois (para imagem) */
+.icone {
+  width: 60px;     /* tamanho fixo do ícone */
+  height: 60px;
+  object-fit: contain;  /* mantém proporção se as imagens tiverem tamanhos diferentes */
+  display: block;
+  margin:  auto;  /* centraliza o ícone no cartão */
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Cabeçalho: apresentação da agência -->
+  <header class="cabecalho">
+    <h1>🏢 Agência Central</h1>
+    <p>Escolha um dos nossos serviços abaixo:</p>
+  </header>
+
+  <!-- Grade de serviços: cada cartão aponta para uma página separada -->
+  <main>
+    <section class="grade">
+
+      <!-- Serviço 1: Assistência Técnica (projeto pronto) -->
+      <div class="cartao">
+        <img class="icone" src="/01-assistencia-tecnica/img/icone.png">
+        <h2>Assistência Técnica</h2>
+        <p>Manutenção e reparo de computadores, notebooks e periféricos.</p>
+        <a href="/01-assistencia-tecnica/index.html">Entrar</a>
+      </div>
+
+      <!-- Serviço 2: Petshop (projeto pronto) -->
+      <div class="cartao">
+        <img class="icone" src="/02-petshop/img/icone.png">
+        <h2>Petshop</h2>
+        <p>Produtos e serviços para o seu melhor amigo.</p>
+        <a href="/02-petshop/index.html">Entrar</a>
+      </div>
+
+      <!-- Serviço 3: Psicologo (sprojeto em andamento) -->
+      <div class="cartao">
+        <img class="icone" src="/03-psicologo/img/icone.png">
+        <h2>Psicologo</h2>
+        <p>Ajuda e suporte através de terapia e acolhimento.</p>
+        <a href="">Entrar</a>
+      </div>
+
+      <!-- Serviço 4: página futura -->
+      <div class="cartao">
+        <div class="icone">💰</div>
+        <h2>Orçamento</h2>
+        <p>Solicite uma proposta personalizada.</p>
+        <a href="orcamento/index.html">Entrar</a>
+      </div>
+
+      <!-- Serviço 5: página futura -->
+      <div class="cartao">
+        <div class="icone">👥</div>
+        <h2>Quem Somos</h2>
+        <p>Conheça nossa história e equipe.</p>
+        <a href="quem-somos/index.html">Entrar</a>
+      </div>
+
+      <!-- Serviço 6: página futura -->
+      <div class="cartao">
+        <div class="icone">⭐</div>
+        <h2>Avaliações</h2>
+        <p>O que dizem nossos clientes.</p>
+        <a href="avaliacoes/index.html">Entrar</a>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Agência Central — Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>

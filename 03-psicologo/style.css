@@ -1,0 +1,347 @@
+/* ============================================================
+   STYLE.CSS — Página da Psicóloga
+   Organização: geral → header → seções → formulários →
+   avaliações → botão WhatsApp → rodapé → responsivo
+   ============================================================ */
+
+/* ===== VARIÁVEIS DE COR (mudar aqui altera o site todo) ===== */
+:root {
+  --cor-principal: #5b6ee1;   /* azul-lavanda: botões, títulos, destaques */
+  --cor-principal-escura: #4353b8; /* usado em títulos e hover */
+  --cor-fundo: #f5f7fa;       /* fundo geral da página */
+  --cor-card: #ffffff;        /* fundo dos cartões/formulários */
+  --cor-texto: #333333;       /* texto padrão */
+  --cor-texto-suave: #666666; /* textos secundários */
+  --cor-sucesso: #2e7d32;     /* mensagem de confirmação */
+  --cor-whatsapp: #25d366;    /* verde oficial do WhatsApp */
+  --sombra: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== RESET E BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* inclui bordas no cálculo de largura */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+}
+
+/* ===== CABEÇALHO FIXO ===== */
+header {
+  background: var(--cor-principal);
+  color: #fff;
+  padding: 15px 30px;
+  display: flex;                  /* logo à esquerda, menu à direita */
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;               /* fixa no topo ao rolar */
+  top: 0;
+  z-index: 100;                   /* fica acima dos outros elementos */
+}
+
+header .logo {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 15px;
+  font-size: 0.95em;
+  transition: opacity 0.2s;       /* efeito suave ao passar o mouse */
+}
+
+header nav a:hover {
+  opacity: 0.75;                  /* clareia o link no hover */
+}
+
+/* ===== TÍTULO PRINCIPAL (Hero) ===== */
+.hero {
+  text-align: center;
+  padding: 50px 20px 10px;
+}
+
+.hero h1 {
+  font-size: 2em;
+  color: var(--cor-principal-escura);
+}
+
+.hero p {
+  color: var(--cor-texto-suave, #777);
+  max-width: 600px;
+  margin: 10px auto 0;
+}
+
+/* ===== SEÇÕES DE CONTEÚDO ===== */
+section {
+  max-width: 900px;   /* limita a largura para facilitar a leitura */
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+section h2 {
+  color: var(--cor-principal-escura);
+  margin-bottom: 15px;
+}
+
+/* ===== SEÇÃO PAGAMENTO (cartões de planos) ===== */
+.plano {
+  background: var(--cor-card);
+  border-left: 4px solid var(--cor-principal); /* barra lateral colorida */
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-shadow: var(--sombra);
+}
+
+/* ===== FORMULÁRIOS (chat e agendamento) ===== */
+form {
+  background: var(--cor-card);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--sombra);
+}
+
+/* Rótulos dos campos */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 0.95em;
+}
+
+/* Campos de digitação e seleção */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit; /* herda a fonte da página */
+  font-size: 1em;
+}
+
+/* Destaque quando o usuário clica no campo */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--cor-principal);
+  border-color: var(--cor-principal);
+}
+
+/* Botões de envio */
+button {
+  background: var(--cor-principal);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: var(--cor-principal-escura); /* escurece no hover */
+}
+
+/* Mensagem de confirmação (agendamento e chat) */
+.sucesso {
+  color: var(--cor-sucesso);
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* ===== SEÇÃO AVALIAÇÕES ===== */
+.avaliacao {
+  background: var(--cor-card);
+  padding: 15px;
+  margin-bottom: 10px;
+  border-left: 4px solid var(--cor-principal);
+  border-radius: 4px;
+  box-shadow: var(--sombra);
+}
+
+.avaliacao em {
+  display: block;          /* nome do cliente em linha própria */
+  margin-top: 5px;
+  color: var(--cor-texto-suave);
+  font-size: 0.9em;
+}
+
+/* ===== SEÇÃO CONTATO ===== */
+#contato p {
+  margin-bottom: 8px;
+}
+
+#contato a {
+  color: var(--cor-principal);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#contato a:hover {
+  text-decoration: underline;
+}
+
+/* ===== BOTÃO FLUTUANTE DE WHATSAPP ===== */
+.whatsapp {
+  position: fixed;         /* acompanha a rolagem da página */
+  bottom: 20px;
+  right: 20px;
+  background: var(--cor-whatsapp);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 999px;    /* formato de pílula */
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s;
+}
+
+.whatsapp:hover {
+  transform: scale(1.05);  /* leve aumento ao passar o mouse */
+}
+
+/* Link de volta para a agência */
+.voltar {
+  display: block;
+  text-align: center;
+  margin: 30px auto;
+  color: var(--cor-principal);
+  text-decoration: none;
+}
+
+.voltar:hover {
+  text-decoration: underline;
+}
+
+/* ===== RODAPÉ ===== */
+footer {
+  background: #2b2b2b;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  font-size: 0.9em;
+}
+
+/* ============================================================
+   RESPONSIVO — ajustes para telas pequenas (celular)
+   ============================================================ */
+@media (max-width: 600px) {
+
+  /* Empilha a logo e o menu verticalmente */
+  header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  header nav a {
+    margin: 0 8px; /* reduz espaçamento entre links */
+  }
+
+  .hero h1 {
+    font-size: 1.6em; /* título menor no celular */
+  }
+}
+
+/* ===== CHATBOX (balões de conversa) ===== */
+#chat-area {
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  min-height: 120px;      /* altura mínima visível antes da 1ª mensagem */
+  max-height: 300px;
+  overflow-y: auto;       /* barra de rolagem quando encher */
+  margin-bottom: 15px;
+  box-shadow: var(--sombra);
+}
+
+.chat-bolha {
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  max-width: 80%;
+  font-size: 0.95em;
+}
+
+.chat-bolha.usuario {
+  background: var(--cor-principal); /* mensagem do usuário: azul */
+  color: #fff;
+  margin-left: auto;                /* alinha à direita */
+}
+
+.chat-bolha.resposta {
+  background: #e8ebfa;              /* resposta automática: cinza-azulado */
+  color: var(--cor-texto);
+}
+
+/* ===== ÍCONES SUBSTITUINDO EMOJIS ===== */
+
+/* Ícone da logo (menor, alinhado com o texto) */
+.logo-icone {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;  /* centraliza verticalmente com o texto */
+  border-radius: 50%;      /* deixa o ícone redondinho */
+  margin-right: 6px;       /* espaço entre ícone e texto */
+}
+
+/* Ícone do título principal (proporcional ao h1) */
+.titulo-icone {
+  width: 44px;
+  height: 44px;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* ===== TEMA NOITE (escuro) ===== */
+:root {
+  --cor-texto-titulo: #4353b8; /* cor dos títulos no modo dia */
+}
+
+/* No modo dia, os elementos usam as cores padrão já definidas.
+   Quando o botão ativa o modo noite, trocamos as cores principais: */
+body.modo-noite {
+  --cor-fundo: #15151d;      /* fundo geral: cinza-escuro */
+  --cor-card: #232733;       /* cartões e formulários: grafite */
+  --cor-texto: #e8e8e8;      /* texto claro sobre fundo escuro */
+  --cor-principal-escura: #b8aaff; /* títulos em tom mais claro p/ contraste */
+}
+
+/* Ajustes finos que precisam de cor diferente do padrão */
+body.modo-noite section h2 { color: #b9a8ff; }        /* títulos de seção claros */
+body.modo-noite .sucesso { color: #6fd66d; }          /* mensagem de confirmação */
+body.modo-noite textarea,
+body.modo-noite input,
+body.modo-noite select {
+  color: #fff;              /* texto digitado fica claro */
+  background: #1a1d27;      /* fundo dos campos escuro */
+}
+
+/* ===== BOTÃO DE TEMA (dia/noite) ===== */
+#botao-tema {
+  width: auto;             /* sobrescreve o width:100% dos botões */
+  background: #ffffff;
+  color: #15171c;
+  border-radius: 999px;
+  width: auto;
+  padding: 10px 16px;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+#botao-tema:hover { transform: scale(1.05); }

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <!-- Favicon: ícone que aparece na aba do navegador -->
+  <link rel="icon" type="image/png" href="/03-psicologo/img/icone.png">
+  <link rel="shortcut icon" href="/03-psicologo/img/icone.png"> <!-- compatibilidade com navegadores antigos -->
+  
+  <link rel="stylesheet" href="style.css">
+  <title>Psicóloga Ana Souza — Atendimento Online</title>
+</head>
+<body>
+
+  <!-- Cabeçalho com navegação interna (âncoras) -->
+  <header>
+    <div class="logo">
+
+  <img src="/03-psicologo/img/icone.png" alt="Logo Psicóloga Ana" class="logo-icone"> Psicóloga Ana
+</div>
+
+    <nav>
+      <a href="#pagamento">Pagamento</a>
+      <a href="#chatbox">Chat</a>
+      <a href="#agendamento">Agendar</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button id="botao-tema">🌙 Noite</button> <!-- começa mostrando a opção oposta -->
+  </header>
+
+  <!-- Título principal -->
+  <header class="hero">
+    <h1>
+  <img src="/03-psicologo/img/icone.png" alt="" class="titulo-icone">
+  Psicologia com acolhimento
+</h1>
+  </header>
+
+  <!-- SEÇÃO: PAGAMENTO -->
+  <section id="pagamento">
+    <h2>💳 Formas de pagamento</h2>
+    <div class="plano">
+      <strong>Sessão avulsa</strong> — R$ 150 (Pix, cartão ou Pix parcelado)
+    </div>
+    <div class="plano">
+      <strong>Pacote mensal (4 sessões)</strong> — R$ 380 (desconto de 5%)
+    </div>
+    <div class="plano">
+      <strong>Convênio:</strong> aceitamos Unimed e SulAmérica
+    </div>
+  </section>
+
+  <!-- CHATBOX: área simulada de conversa -->
+  <section id="chatbox">
+    <h2>💬 Chat de apoio</h2>
+    <p>Tire dúvidas iniciais antes de agendar (resposta em até 24h).</p>
+
+    <!-- Área onde as bolhas de mensagem vão aparecer -->
+    <div id="chat-area" class="chat-area"></div>
+
+    <form id="form-chat">
+      <label for="campo-mensagem">Sua mensagem:</label>
+      <textarea id="campo-mensagem" rows="3" required></textarea>
+      <button type="submit">Enviar mensagem</button>
+    </form>
+  </section>
+
+  <!-- SEÇÃO: AGENDAMENTO (agora dentro de section, com h2) -->
+  <section id="agendamento">
+    <h2>📅 Agende sua sessão</h2>
+    <form id="form-agendamento">
+      <label for="campo-data">Data:</label>
+      <input type="date" id="campo-data" required>
+
+      <label for="campo-horario">Horário:</label>
+      <select id="campo-horario" required>
+        <option value="">Escolha...</option>
+        <option>09:00</option>
+        <option>10:00</option>
+        <option>14:00</option>
+        <option>16:00</option>
+      </select>
+
+      <button type="submit">Confirmar agendamento</button>
+    </form>
+    <p id="confirmacao" class="sucesso"></p>
+  </section>
+
+  <!-- SEÇÃO: AVALIAÇÕES DE CLIENTES -->
+  <section id="avaliacoes">
+    <h2>⭐ Avaliações</h2>
+    <div class="avaliacao">
+      ⭐⭐⭐⭐⭐ — "Me ajudou muito a atravessar um momento difícil."
+      <em>— Ana P.</em>
+    </div>
+    <div class="avaliacao">
+      ⭐⭐⭐⭐⭐ — Atendimento humano e acolhedor. Recomendo!
+      <em>— Carlos M.</em>
+    </div>
+  </section>
+
+  <!-- SEÇÃO DE CONTATO -->
+  <section id="contato">
+    <h2>📞 Contato</h2>
+    <p>Telefone/WhatsApp: (11) 98765-4321</p>
+    <p>E-mail: contato@psilumo.com.br</p>
+    <p>Atendimento online e presencial</p>
+  </section>
+
+  <a href="../index.html" class="voltar">← Voltar para a Agência</a>
+
+  <footer>
+    <p>&copy; 2026 Psicóloga Ana — CRP 06/12345</p>
+  </footer>
+
+  <!-- Carrega o JS externo; substitui o script antigo,
+       cujos ids não batiam com os formulários -->
+  <script src="script.js"></script>
+
+</body>
+</html>

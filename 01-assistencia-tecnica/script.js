@@ -688,7 +688,7 @@ const CHAT_ANSWERS = [
     },
     {
         keys: ["local", "onde", "endereco", "endereço", "fica", "ficamos", "loja"],
-        answer: "Estamos na Rua Exemplo, 123 — Centro. Também buscamos e entregamos em toda a região! 📍"
+        answer: "Estamos na Rua Amacás, 123 — Centro. Também buscamos e entregamos em toda a região! 📍"
     },
     {
         keys: ["prazo", "demora", "tempo", "dias", "quando fica pronto", "rapid"],

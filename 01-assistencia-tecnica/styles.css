@@ -705,25 +705,28 @@ textarea:focus {
     font-size: 1.1rem;
 }
 
-/* Área do QR: borda tracejada funciona como placeholder
-   antes de o QR ser gerado pelo JS */
+/* Área do QR: quadrado permanente com bordas arredondadas */
 .qr-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 280px;
+    width: min(280px, 100%);   /* largura máxima, encolhe em telas pequenas */
+    aspect-ratio: 1 / 1;       /* altura sempre igual à largura = quadrado */
     margin: 25px 0;
     padding: 20px;
     background: rgba(24, 167, 255, 0.05);
     border: 2px dashed var(--accent);
-    border-radius: 15px;
+    border-radius: 15px;       /* mantém as bordas arredondadas */
+    overflow: hidden;          /* QR gerado respeita o raio */
 }
 
-.qr-container canvas {
-    max-width: 100%;
-    height: auto;
+/* QR gerado preenche o quadrado */
+.qr-container canvas,
+.qr-container img {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
 }
-
 .pix-info {
     width: 100%;
     text-align: left;

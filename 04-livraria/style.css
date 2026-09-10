@@ -1,0 +1,497 @@
+/* ===== VARIÁVEIS DOS TEMAS ===== */
+:root {
+  --cor-fundo: #faf6f0;
+  --cor-texto: #2b2b2b;
+  --cor-primaria: #6d4aff;
+  --cor-card: #ffffff;
+  --cor-borda: #e0d9cf;
+  --cor-hover: #f0ebe3;
+  --sombra: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Tema escuro (ativado pelo JS adicionando a classe 'dark' no body) */
+body.dark {
+  --cor-fundo: #1a1a2e;
+  --cor-texto: #eaeaea;
+  --cor-primaria: #9b7dff;
+  --cor-card: #24243e;
+  --cor-borda: #3a3a55;
+  --cor-hover: #2a2a45;
+  --sombra: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== RESET E BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+h2 {
+  color: var(--cor-primaria);
+  margin-bottom: 20px;
+}
+
+/* ===== CABEÇALHO ===== */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 15px 30px;
+  background-color: var(--cor-card);
+  border-bottom: 1px solid var(--cor-borda);
+  box-shadow: var(--sombra);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header h1 {
+  font-size: 1.4rem;
+  color: var(--cor-primaria);
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--cor-texto);
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+nav a:hover {
+  background-color: var(--cor-hover);
+}
+
+/* Botão dia/noite */
+#btn-tema {
+  background: none;
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  font-size: 1.3rem;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+#btn-tema:hover {
+  transform: scale(1.1);
+}
+
+/* ===== CATÁLOGO ===== */
+.catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.livro {
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: var(--sombra);
+  transition: transform 0.2s;
+}
+
+.livro:hover {
+  transform: translateY(-4px);
+}
+
+.livro img {
+  width: 130px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.livro .preco {
+  font-weight: bold;
+  color: var(--cor-primaria);
+  font-size: 1.2rem;
+  margin: 8px 0;
+}
+
+.btn-comprar {
+  background-color: var(--cor-primaria);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-comprar:hover {
+  opacity: 0.85;
+}
+
+/* ===== FORMULÁRIOS GERAIS ===== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 450px;
+}
+
+input,
+select,
+textarea {
+  padding: 12px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--cor-card);
+  color: var(--cor-texto);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+button[type="submit"],
+form button {
+  background-color: var(--cor-primaria);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+button[type="submit"]:hover {
+  opacity: 0.85;
+}
+
+/* Mensagens de feedback */
+#msg-agendamento,
+#msg-pagamento,
+#msg-contato {
+  margin-top: 12px;
+  font-weight: bold;
+  color: var(--cor-primaria);
+}
+
+/* ===== AVALIAÇÕES ===== */
+.avaliacao {
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 12px;
+  box-shadow: var(--sombra);
+}
+
+.avaliacao .estrelas {
+  color: #ffb400;
+  letter-spacing: 3px;
+}
+
+.avaliacao .autor {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#form-avaliacao {
+  margin-top: 25px;
+}
+
+/* ===== PAGAMENTO ===== */
+#pagamento input[readonly] {
+  background-color: var(--cor-hover);
+  cursor: not-allowed;
+}
+
+/* ===== CHATBOX ===== */
+#chatbox {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  display: none;          /* Oculto por padrão; JS alterna para flex */
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 200;
+}
+
+#chatbox.aberto {
+  display: flex;
+}
+
+#chat-header {
+  background-color: var(--cor-primaria);
+  color: #ffffff;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+#btn-fechar-chat {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#chat-mensagens {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mensagem {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.mensagem.usuario {
+  background-color: var(--cor-primaria);
+  color: #ffffff;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.mensagem.bot {
+  background-color: var(--cor-hover);
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+
+#form-chat {
+  flex-direction: row;
+  padding: 10px;
+  gap: 8px;
+}
+
+#form-chat input {
+  flex: 1;
+  padding: 8px;
+}
+
+#form-chat button {
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+/* Botão flutuante do chat */
+#btn-abrir-chat {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--cor-primaria);
+  font-size: 1.6rem;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  transition: transform 0.2s;
+  z-index: 200;
+}
+
+#btn-abrir-chat:hover {
+  transform: scale(1.1);
+}
+
+/* ===== RODAPÉ ===== */
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 1px solid var(--cor-borda);
+  color: var(--cor-texto);
+  opacity: 0.7;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 600px) {
+  header {
+    justify-content: center;
+    text-align: center;
+  }
+
+  nav {
+    justify-content: center;
+  }
+}
+/* ===== MEUS AGENDAMENTOS ===== */
+#form-agendamento {
+  margin-bottom: 15px;
+}
+
+#lista-agendamentos {
+  margin-top: 15px;
+}
+
+.agendamento-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: var(--sombra);
+}
+
+.agendamento-info strong {
+  display: block;
+  margin-bottom: 3px;
+}
+
+.btn-cancelar {
+  background-color: #d9534f;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-cancelar:hover {
+  opacity: 0.85;
+}
+
+/* ===== CARROSSEL DO CATÁLOGO ===== */
+.carrossel {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.carrossel-janela {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carrossel-trilha {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Cada slide ocupa 1/3 da janela em telas grandes */
+.carrossel-slide {
+  flex: 0 0 33.333%;
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.carrossel-slide .livro {
+  width: 100%;
+  max-width: 280px;
+}
+
+/* Em telas médias: 2 livros | pequenas: 1 livro */
+@media (max-width: 900px) {
+  .carrossel-slide { flex-basis: 50%; }
+}
+@media (max-width: 600px) {
+  .carrossel-slide { flex-basis: 100%; }
+  .carrossel-slide .livro { max-width: 300px; }
+}
+
+/* Setas */
+.carrossel-seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-card);
+  color: var(--cor-texto);
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  z-index: 5;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.carrossel-seta:hover {
+  background-color: var(--cor-hover);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carrossel-seta.anterior { left: -55px; }
+.carrossel-seta.proximo  { right: -55px; }
+
+/* Bolinhas */
+.carrossel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-hover);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.dot.ativo {
+  background-color: var(--cor-primaria);
+  transform: scale(1.15);
+}
+
+/* Em telas pequenas as setas ficam por cima dos livros */
+@media (max-width: 1150px) {
+  .carrossel-seta.anterior { left: 8px; }
+  .carrossel-seta.proximo  { right: 8px; }
+}

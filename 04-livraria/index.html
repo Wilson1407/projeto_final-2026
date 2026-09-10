@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livraria Página Virada</title>
+
+  <!-- Favicon -->
+
+    <!-- FAVICON SVG INLINE (não requer arquivo externo) -->
+    <link rel="icon" type="image/svg+xml" href="img/icone.png">
+    
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== CABEÇALHO ===== -->
+  <header>
+    <h1>
+  <img src="/04-livraria/img/icone.png" alt="Livraria Virada" width="25" height="25">
+  Livraria Virada
+</h1>
+
+    <nav>
+      <a href="#livros">Livros</a>
+      <a href="#agendamento">Agendamento</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#pagamento">Pagamento</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <!-- Botão Dia/Noite -->
+    <button id="btn-tema" aria-label="Alternar tema claro/escuro">🌙</button>
+  </header>
+
+  <!-- ===== CATÁLOGO DE LIVROS ===== -->
+  <section id="livros">
+  <h2>Nosso Catálogo</h2>
+
+  <div class="carrossel" id="carrossel">
+    <button class="carrossel-seta anterior" aria-label="Anterior">❮</button>
+
+    <div class="carrossel-janela">
+      <div class="carrossel-trilha">
+        <div class="carrossel-slide">
+          <div class="livro">
+            <img src="/04-livraria/img/img01.jpg" alt="Capa do livro 1984">
+            <h3>1984 (CIA das Letras)</h3>
+            <p>George Orwell</p>
+            <p class="preco">R$ 19,90</p>
+            <button class="btn-comprar" data-preco="19.90" data-titulo="1984">Comprar</button>
+          </div>
+        </div>
+        <div class="carrossel-slide">
+          <div class="livro">
+            <img src="/04-livraria/img/img02.jpg" alt="Capa do livro Diário de um Banana 01">
+            <h3>Diário de um Banana 01</h3>
+            <p>Jeff Kinney</p>
+            <p class="preco">R$ 49,90</p>
+            <button class="btn-comprar" data-preco="49.90" data-titulo="Diário de um Banana">Comprar</button>
+          </div>
+        </div>
+        <div class="carrossel-slide">
+          <div class="livro">
+            <img src="/04-livraria/img/img03.jpg" alt="Capa do livro Harry Potter e a Pedra Filosofal">
+            <h3>Harry Poter e a Pedra Filosofal</h3>
+            <p>J. K. Rowling</p>
+            <p class="preco">R$ 30,90</p>
+            <button class="btn-comprar" data-preco="30.90" data-titulo="Harry Poter e a Pedra Filosofal">Comprar</button>
+          </div>
+        </div>
+        <div class="carrossel-slide">
+          <div class="livro">
+            <img src="/04-livraria/img/img04.jpg" alt="Capa do O Último Adeus de Sherlock Holmes">
+            <h3>O Último Adeus de Sherlock Holmes</h3>
+            <p>Arthur Conan Doyle</p>
+            <p class="preco">R$ 60,90</p>
+            <button class="btn-comprar" data-preco="60.90" data-titulo="O Último Adeus de Sherlock Holmes">Comprar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="carrossel-seta proximo" aria-label="Próximo">❯</button>
+
+    <div class="carrossel-dots" id="carrossel-dots">
+      <!-- Bolinhas geradas via JS -->
+    </div>
+  </div>
+</section>
+
+ <!-- ===== AGENDAMENTO ===== -->
+<section id="agendamento">
+  <h2>📅 Agende sua Visita</h2>
+  <form id="form-agendamento">
+    <input type="text" placeholder="Seu nome" required>
+    <input type="date" required>
+    <input type="time" required>
+    <button type="submit">Agendar</button>
+  </form>
+  <p id="msg-agendamento"></p>
+
+  <!-- Lista de agendamentos do usuário -->
+  <div id="meus-agendamentos">
+    <h3>🗓️ Suas visitas agendadas</h3>
+    <div id="lista-agendamentos">
+      <!-- Os agendamentos aparecem aqui via JS -->
+    </div>
+  </div>
+</section>
+
+  <!-- ===== AVALIAÇÕES ===== -->
+  <section id="avaliacoes">
+    <h2>⭐ Avaliações dos Clientes</h2>
+    <div id="lista-avaliacoes">
+      <!-- As avaliações aparecerão aqui via JS -->
+    </div>
+    <form id="form-avaliacao">
+      <input type="text" placeholder="Seu nome" required>
+      <select id="estrelas" required>
+        <option value="5">★★★★★ - Excelente</option>
+        <option value="4">★★★★ - Ótimo</option>
+        <option value="3">★★★ - Bom</option>
+        <option value="2">★★ - Regular</option>
+        <option value="1">★ - Ruim</option>
+      </select>
+      <textarea placeholder="Sua avaliação..." required></textarea>
+      <button type="submit">Enviar Avaliação</button>
+    </form>
+  </section>
+
+  <!-- ===== PAGAMENTO ===== -->
+  <section id="pagamento">
+    <h2>💳 Finalizar Compra</h2>
+    <form id="form-pagamento">
+      <input type="text" id="pag-item" placeholder="Livro selecionado" readonly>
+      <input type="number" id="pag-total" placeholder="Total (R$)" readonly>
+      <select required>
+        <option value="">Forma de pagamento</option>
+        <option value="pix">PIX</option>
+        <option value="cartao">Cartão de Crédito</option>
+        <option value="boleto">Boleto</option>
+      </select>
+      <button type="submit">Pagar</button>
+    </form>
+    <p id="msg-pagamento"></p>
+  </section>
+
+  <!-- ===== CONTATO ===== -->
+  <section id="contato">
+    <h2>📧 Entre em Contato</h2>
+    <form id="form-contato">
+      <input type="text" placeholder="Seu nome" required>
+      <input type="email" placeholder="Seu e-mail" required>
+      <textarea placeholder="Sua mensagem..." required></textarea>
+      <button type="submit">Enviar Mensagem</button>
+    </form>
+    <p id="msg-contato"></p>
+  </section>
+
+  <!-- ===== CHATBOX ===== -->
+  <div id="chatbox">
+    <div id="chat-header">
+      <span>💬 Atendimento</span>
+      <button id="btn-fechar-chat">✖</button>
+    </div>
+    <div id="chat-mensagens">
+      <!-- Mensagens aparecem aqui -->
+    </div>
+    <form id="form-chat">
+      <input type="text" id="chat-input" placeholder="Digite sua mensagem...">
+      <button type="submit">➤</button>
+    </form>
+  </div>
+
+  <!-- Botão flutuante para abrir o chat -->
+  <button id="btn-abrir-chat">💬</button>
+
+  <footer>
+    <p>© 2026 Livraria Página Virada - Todos os direitos reservados</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

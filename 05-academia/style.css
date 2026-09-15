@@ -1,0 +1,709 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    background-color: #0b0b0b;
+    color: white;
+}
+
+
+/* MENU */
+
+header {
+    background-color: #111;
+
+    padding: 20px 8%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: fixed;
+
+    width: 100%;
+    top: 0;
+
+    z-index: 1000;
+
+    border-bottom: 1px solid #292929;
+}
+
+
+.logo {
+    color: #e50914;
+
+    font-size: 25px;
+
+    font-weight: bold;
+}
+
+
+nav a {
+    color: white;
+
+    text-decoration: none;
+
+    margin-left: 20px;
+
+    transition: 0.3s;
+}
+
+
+nav a:hover {
+    color: #e50914;
+}
+
+
+/* BOTÃO */
+
+.botao {
+    background-color: #e50914;
+
+    color: white;
+
+    padding: 14px 24px;
+
+    text-decoration: none;
+
+    border: none;
+
+    border-radius: 5px;
+
+    font-weight: bold;
+
+    display: inline-block;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.botao:hover {
+    background-color: #b20710;
+
+    transform: scale(1.05);
+}
+
+
+/* INÍCIO */
+
+.inicio {
+    height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.65),
+            rgba(0,0,0,0.85)
+        ),
+
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1600&q=80");
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 8%;
+}
+
+
+.hero {
+    max-width: 700px;
+}
+
+
+.hero span {
+    color: #e50914;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+
+.hero h1 {
+    font-size: 65px;
+
+    margin: 15px 0;
+}
+
+
+.hero p {
+    font-size: 20px;
+
+    color: #ddd;
+
+    line-height: 1.6;
+
+    margin-bottom: 30px;
+}
+
+
+/* SEÇÕES */
+
+section {
+    padding: 90px 8%;
+}
+
+
+.titulo {
+    text-align: center;
+
+    margin-bottom: 50px;
+}
+
+
+.titulo h2 {
+    font-size: 40px;
+
+    margin-bottom: 10px;
+}
+
+
+.titulo p {
+    color: #aaa;
+
+    font-size: 17px;
+}
+
+
+/* TREINOS */
+
+.treinos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+.card {
+    background-color: #151515;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    border: 1px solid #292929;
+
+    transition: 0.3s;
+}
+
+
+.card:hover {
+    transform: translateY(-8px);
+
+    border-color: #e50914;
+}
+
+
+.card h3 {
+    color: #e50914;
+
+    margin-bottom: 15px;
+
+    font-size: 24px;
+}
+
+
+.card p {
+    color: #bbb;
+
+    line-height: 1.6;
+}
+
+
+/* SOBRE */
+
+.sobre {
+    background-color: #111;
+}
+
+
+.sobre-conteudo {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 50px;
+
+    align-items: center;
+}
+
+
+.sobre img {
+    width: 100%;
+
+    border-radius: 10px;
+}
+
+
+.sobre-texto h2 {
+    font-size: 40px;
+
+    margin-bottom: 20px;
+}
+
+
+.sobre-texto p {
+    color: #bbb;
+
+    line-height: 1.8;
+
+    margin-bottom: 15px;
+}
+
+
+/* BENEFÍCIOS */
+
+.beneficios {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+.beneficio {
+    background-color: #151515;
+
+    padding: 25px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    border: 1px solid #292929;
+}
+
+
+.beneficio h3 {
+    color: #e50914;
+
+    margin-bottom: 10px;
+}
+
+
+.beneficio p {
+    color: #aaa;
+
+    line-height: 1.5;
+}
+
+
+/* LOJA */
+
+.loja {
+    background-color: #0b0b0b;
+}
+
+
+.produto {
+    background-color: #151515;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    border: 1px solid #292929;
+
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+
+.produto:hover {
+    transform: translateY(-8px);
+
+    border-color: #e50914;
+}
+
+
+.produto h3 {
+    color: #e50914;
+
+    font-size: 26px;
+
+    margin-bottom: 15px;
+}
+
+
+.produto p {
+    color: #bbb;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+
+.icone {
+    font-size: 55px;
+
+    margin-bottom: 15px;
+}
+
+
+/* PRODUTOS */
+
+.lista-produtos {
+    margin-top: 60px;
+
+    display: none;
+}
+
+
+.lista-produtos h2 {
+    text-align: center;
+
+    color: #e50914;
+
+    font-size: 32px;
+
+    margin-bottom: 30px;
+}
+
+
+.lista-produtos-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.produto-item {
+    background-color: #151515;
+
+    border: 1px solid #292929;
+
+    border-radius: 10px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+
+.produto-item:hover {
+    transform: translateY(-6px);
+
+    border-color: #e50914;
+}
+
+
+.produto-imagem {
+    font-size: 60px;
+
+    margin-bottom: 15px;
+}
+
+
+.produto-item h3 {
+    margin-bottom: 10px;
+
+    font-size: 21px;
+}
+
+
+.produto-item p {
+    color: #aaa;
+
+    line-height: 1.5;
+
+    margin-bottom: 15px;
+}
+
+
+.preco-produto {
+    color: #e50914;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+
+.produto-item button {
+    border: none;
+
+    cursor: pointer;
+}
+
+
+.aviso-loja {
+    text-align: center;
+
+    color: #777;
+
+    margin-top: 30px;
+}
+
+
+/* PLANOS */
+
+.planos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+.plano {
+    background-color: #151515;
+
+    border: 1px solid #292929;
+
+    border-radius: 10px;
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+
+.plano:hover {
+    transform: translateY(-8px);
+
+    border-color: #e50914;
+}
+
+
+.plano.destaque {
+    border: 2px solid #e50914;
+}
+
+
+.plano h3 {
+    color: #e50914;
+
+    font-size: 27px;
+
+    margin-bottom: 15px;
+}
+
+
+.preco {
+    font-size: 38px;
+
+    font-weight: bold;
+
+    margin-bottom: 25px;
+}
+
+
+.preco span {
+    font-size: 16px;
+
+    color: #aaa;
+}
+
+
+.plano ul {
+    list-style: none;
+
+    margin-bottom: 30px;
+}
+
+
+.plano li {
+    margin: 13px 0;
+
+    color: #ccc;
+}
+
+
+.plano li::before {
+    content: "✓ ";
+
+    color: #e50914;
+
+    font-weight: bold;
+}
+
+
+.economia {
+    display: inline-block;
+
+    background-color: #e50914;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    margin-bottom: 15px;
+}
+
+
+/* CONTATO */
+
+.contato {
+    background-color: #111;
+}
+
+
+.formulario {
+    max-width: 600px;
+
+    margin: auto;
+}
+
+
+.formulario input,
+.formulario textarea {
+
+    width: 100%;
+
+    padding: 15px;
+
+    margin-bottom: 15px;
+
+    background-color: #1a1a1a;
+
+    border: 1px solid #333;
+
+    color: white;
+
+    border-radius: 5px;
+}
+
+
+.formulario textarea {
+    height: 130px;
+
+    resize: none;
+}
+
+
+.formulario button {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    background-color: #e50914;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 16px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+
+.formulario button:hover {
+    background-color: #b20710;
+}
+
+
+/* RODAPÉ */
+
+footer {
+    background-color: #000000;
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #777;
+}
+
+
+footer strong {
+    color: #e50914;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 900px) {
+
+    .treinos,
+    .planos,
+    .lista-produtos-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .beneficios {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .sobre-conteudo {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .hero h1 {
+
+        font-size: 45px;
+    }
+
+
+    nav {
+
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .beneficios {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .hero h1 {
+
+        font-size: 38px;
+    }
+
+
+    section {
+
+        padding: 70px 5%;
+    }
+
+}

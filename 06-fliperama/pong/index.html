@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong - Fliperama</title>
+    
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    <!-- CSS do jogo (separado do catálogo) -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../img/icone.png">
+</head>
+<body>
+    
+    <!-- Botão Voltar ao Catálogo -->
+    <a href="../index.html" class="back-btn">
+        <span class="material-symbols-rounded">arrow_back</span>
+        Voltar ao Fliperama
+    </a>
+    
+    <h1>PONG</h1>
+    
+    <canvas id="pongCanvas" width="600" height="400"></canvas>
+    
+    <button id="startResetButton">INICIAR JOGO</button>
+    
+    <!-- Instruções -->
+    <div class="instructions">
+        <p>⌨️ Use <strong>W</strong> (cima) e <strong>S</strong> (baixo) para mover</p>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

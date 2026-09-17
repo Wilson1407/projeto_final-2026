@@ -1,0 +1,124 @@
+/* ============================================
+   CONFIGURAÇÕES GERAIS E VARIÁVEIS DE COR
+   ============================================ */
+
+/* Definindo as variáveis CSS para facilitar manutenção das cores */
+:root {
+  --drogasil-red: #CC0000;          /* Vermelho principal da Drogasil */
+  --drogasil-dark-red: #990000;     /* Vermelho mais escuro para hover */
+  --bg-light: #F4F6F8;              /* Fundo claro da página */
+  --text-dark: #222222;             /* Cor do texto principal */
+  --card-bg: #FFFFFF;               /* Fundo dos elementos em destaque */
+  --border-color: #E0E0E0;          /* Cor das bordas */
+}
+
+/* Reset básico - remove margens e paddings padrão */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilização do corpo da página */
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ============================================
+   CABEÇALHO
+   ============================================ */
+
+header {
+  width: 100%;
+  background-color: var(--drogasil-red);
+  color: #FFFFFF;
+  padding: 1rem 2rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   CONTAINER DO JOGO
+   ============================================ */
+
+.game-container {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ============================================
+   PLACAR
+   ============================================ */
+
+.score-board {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+/* Destaque vermelho para os números do placar */
+.score-board span {
+  color: var(--drogasil-red);
+}
+
+/* ============================================
+   CANVAS DO JOGO
+   ============================================ */
+
+canvas {
+  border: 3px solid var(--drogasil-red);
+  border-radius: 4px;
+  background-color: #FAFAFA;
+  /* Garante que o canvas não ultrapasse o container em telas pequenas */
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================
+   BOTÕES E INSTRUÇÕES
+   ============================================ */
+
+.btn-restart {
+  background-color: var(--drogasil-red);
+  color: #FFFFFF;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-restart:hover {
+  background-color: var(--drogasil-dark-red);
+}
+
+.controls-hint {
+  font-size: 0.85rem;
+  color: #666666;
+  text-align: center;
+}

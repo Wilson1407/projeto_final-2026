@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake Game</title>
+  <!-- Link para o arquivo CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../img/icone.png">
+    
+</head>
+<body>
+
+  <header>
+    <h1>Snake Game</h1>
+  </header>
+
+  <div class="game-container">
+    <!-- Placar do jogo -->
+    <div class="score-board">
+      <div>Pontuação: <span id="score">0</span></div>
+      <div>Recorde: <span id="high-score">0</span></div>
+    </div>
+
+    <!-- Canvas onde o jogo será desenhado -->
+    <canvas id="snakeGame" width="400" height="400"></canvas>
+
+    <!-- Botão para reiniciar -->
+    <button id="restart-btn" class="btn-restart">Reiniciar Jogo</button>
+    
+    <!-- Instruções de controle -->
+    <div class="controls-hint">
+      Use as <strong>setas do teclado</strong> para movimentar a cobrinha.
+    </div>
+  </div>
+
+  <a href="../index.html" class="voltar">← Voltar para a Fliperama</a>
+
+  <!-- Link para o arquivo JavaScript - deve estar no final do body -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+:root {
+  --drogasil-red: #CC0000;
+  --drogasil-dark-red: #990000;
+  --bg-light: #F4F6F8;
+  --text-dark: #222222;
+  --card-bg: #FFFFFF;
+  --border-color: #E0E0E0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+header {
+  width: 100%;
+  max-width: 600px;
+  background-color: var(--drogasil-red);
+  color: #FFFFFF;
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.game-container {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.score-board {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.score-board span {
+  color: var(--drogasil-red);
+}
+
+canvas {
+  border: 3px solid var(--drogasil-red);
+  border-radius: 4px;
+  background-color: #000000;
+  display: block;
+}
+
+.btn-start {
+  background-color: var(--drogasil-red);
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-start:hover {
+  background-color: var(--drogasil-dark-red);
+}
+
+.controls-hint {
+  font-size: 0.85rem;
+  color: #666666;
+  text-align: center;
+}

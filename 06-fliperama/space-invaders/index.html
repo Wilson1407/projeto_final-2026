@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Invaders</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../img/icone.png">
+    
+</head>
+<body>
+
+  <header>
+    <h1>Space Invaders</h1>
+  </header>
+
+  <div class="game-container">
+    <div class="score-board">
+      <div>Pontuação: <span id="score">0</span></div>
+      <div>Vidas: <span id="lives">3</span></div>
+      <div>Nível: <span id="level">1</span></div>
+    </div>
+
+    <canvas id="spaceInvaders" width="600" height="500"></canvas>
+
+    <button id="start-btn" class="btn-start">Iniciar Jogo</button>
+    
+    <div class="controls-hint">
+      ← → Mover | Espaço Atirar | R Reiniciar
+    </div>
+  </div>
+
+  <a href="../index.html" class="voltar">← Voltar para a Agência</a>
+
+  <script src="script.js"></script>
+</body>
+</html>
